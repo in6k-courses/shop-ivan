@@ -1,8 +1,10 @@
 package com.shopApp.discounts;
 
+import java.math.BigDecimal;
+
 /**
  * Created by employee on 3/3/16.
  */
 public interface Discount {
-    int calculateDiscount(int price);
+    BigDecimal calculateDiscount(BigDecimal price);
 }

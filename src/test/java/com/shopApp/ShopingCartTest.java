@@ -39,7 +39,7 @@ public class ShopingCartTest {
 
     @Test
     public void testSetFullPrice() {
-        assertThat(shopingCart.getFullPrice(), is(equalTo(new BigDecimal(60))));
+        assertThat(shopingCart.getFullPrice(), is(new BigDecimal(60)));
     }
 
 

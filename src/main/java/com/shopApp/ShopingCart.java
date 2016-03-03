@@ -30,7 +30,7 @@ public class ShopingCart {
         setFullPrice();
     }
 
-    private int executeDiscount(BigDecimal executeDiscount) {
+    private BigDecimal executeDiscount(BigDecimal executeDiscount) {
         endPrice = fullPrice.subtract(discount.calculateDiscount(executeDiscount));
         return endPrice;
     }
@@ -38,17 +38,17 @@ public class ShopingCart {
     private void setFullPrice() {
         BigDecimal sum = new BigDecimal("0");
         for (int i = 0; i < products.size(); i++) {
-            sum.add(products.get(i).getCost());
+            sum = sum.add(products.get(i).getCost());
         }
         fullPrice = sum;
     }
 
 
-    public int getFullPrice() {
+    public BigDecimal getFullPrice() {
         return fullPrice;
     }
 
-    public int getEndPrice() {
+    public BigDecimal getEndPrice() {
         return endPrice;
     }
 

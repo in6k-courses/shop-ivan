@@ -17,15 +17,15 @@ public class TotalChangeableDiscount implements Discount {
         discountPercentage = SMALL_DISCOUNT;
     }
 
-    public int calculateDiscount(BigDecimal price) {
+    public BigDecimal calculateDiscount(BigDecimal price) {
         discountPercentage = calculateDiscountSize(price);
-        int discount = (price * discountPercentage) / 100;
+        BigDecimal discount = (price.multiply(new BigDecimal(discountPercentage))).divide(new BigDecimal(100));
         return discount;
     }
 
     private int calculateDiscountSize(BigDecimal price) {
-        if (price < 300) return SMALL_DISCOUNT;
-        if (price < 600) return MIDDLE_DISCOUNT;
+        if (price.compareTo(new BigDecimal(300)) == -1) return SMALL_DISCOUNT;
+        if (price.compareTo(new BigDecimal(600)) == -1) return MIDDLE_DISCOUNT;
         return BIG_DISCOUNT;
     }
 }
