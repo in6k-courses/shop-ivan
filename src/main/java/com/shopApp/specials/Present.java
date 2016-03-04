@@ -1,34 +1,33 @@
 package com.shopApp.specials;
 
 import com.shopApp.Product;
-import com.shopApp.ShopingCart;
-import com.shopApp.discounts.Discount;
-import com.shopApp.discounts.ProductDiscount;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by employee on 3/3/16.
  */
-public class Present implements Special {
+public class Present implements Sale {
 
-    private List<Product> productsForSpecial = new ArrayList<Product>();
+    private List<Product> saleProducts = new ArrayList<Product>();
     private List<Product> choosenProducts = new ArrayList<Product>();
 
     private Product present;
 
-    public Present(List<Product> productsForSpecial, Product present) {
-        this.productsForSpecial = productsForSpecial;
+    public Present(List<Product> saleProducts, Product present) {
+        this.saleProducts = saleProducts;
         this.present = present;
     }
 
-    public void takeParticipation(List<Product> choosenProducts) {
+    public void takeParticipation(List<Product> cartProducts) {
 
-        for(Product choosenProduct : choosenProducts) {
-            for(Product specialProduct : productsForSpecial) {
-                if(choosenProduct.equals(specialProduct)) {
-                    choosenProducts.add(present);
+        for(Product cartProduct : cartProducts) {
+            for(Product saleProduct : saleProducts) {
+                if(cartProduct.equals(saleProduct)) {
+                    present.setPrice(new BigDecimal(0));
+                    cartProducts.add(present);
                     return;
                 }
             }

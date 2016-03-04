@@ -7,11 +7,11 @@ import java.math.BigDecimal;
  */
 public class Product {
     private String name;
-    private BigDecimal cost;
+    private BigDecimal price;
 
-    public Product(String name, BigDecimal cost) {
+    public Product(String name, BigDecimal price) {
         this.name = name;
-        this.cost = cost;
+        this.price = price;
     }
 
     public String getName() {
@@ -22,12 +22,12 @@ public class Product {
         this.name = name;
     }
 
-    public BigDecimal getCost() {
-        return cost;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Override
@@ -38,19 +38,19 @@ public class Product {
         Product product = (Product) o;
 
         if (!name.equals(product.name)) return false;
-        return cost.equals(product.cost);
+        return price.equals(product.price);
 
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + cost.hashCode();
+        result = 31 * result + price.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "name= " + name + " " + "cost= " + cost;
+        return "name= " + name + " " + "price= " + price;
     }
 }

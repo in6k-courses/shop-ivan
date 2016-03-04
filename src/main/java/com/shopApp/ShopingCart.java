@@ -1,7 +1,7 @@
 package com.shopApp;
 
 import com.shopApp.discounts.Discount;
-import com.shopApp.specials.Special;
+import com.shopApp.specials.Sale;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,40 +12,40 @@ import java.util.List;
  */
 public class ShopingCart {
     private Discount discount;
-    private Special special;
+    private Sale sale;
 
-    private List<Product> products = new ArrayList<Product>();
+    private List<Product> selectedProducts = new ArrayList<Product>();
 
     private BigDecimal fullPrice;
-    private BigDecimal endPrice;
+    private BigDecimal discountPrice;
 
-    public ShopingCart(List<Product> products, Discount discount, Special special) {
-        this(products);
+    public ShopingCart(List<Product> selectedProducts, Discount discount, Sale sale) {
+        this(selectedProducts);
         this.discount = discount;
-        this.special = special;
+        this.sale = sale;
     }
 
-    public ShopingCart(List<Product> products) {
-        this.products = products;
+    public ShopingCart(List<Product> selectedProducts) {
+        this.selectedProducts = selectedProducts;
         setFullPrice();
     }
 
     public void executeDiscount() {
         BigDecimal discountFromPrice = discount.calculateDiscount(fullPrice);
-        endPrice = fullPrice.subtract(discountFromPrice);
+        discountPrice = fullPrice.subtract(discountFromPrice);
     }
 
-    public void executeSpecial() {
-        special.takeParticipation(products);
+    public void acceptSale() {
+        sale.takeParticipation(selectedProducts);
     }
 
     private void setFullPrice() {
         BigDecimal sum = new BigDecimal("0");
-        for (int i = 0; i < products.size(); i++) {
-            sum = sum.add(products.get(i).getCost());
+        for (int i = 0; i < selectedProducts.size(); i++) {
+            sum = sum.add(selectedProducts.get(i).getPrice());
         }
         fullPrice = sum;
-        endPrice = fullPrice;
+        discountPrice = fullPrice;
     }
 
 
@@ -53,29 +53,25 @@ public class ShopingCart {
         return fullPrice;
     }
 
-    public BigDecimal getEndPrice() {
-        return endPrice;
+    public BigDecimal getDiscountPrice() {
+        return discountPrice;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getSelectedProducts() {
+        return selectedProducts;
     }
 
     public BigDecimal discountSize() {
-        return fullPrice.subtract(endPrice);
+        return fullPrice.subtract(discountPrice);
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setSelectedProducts(List<Product> selectedProducts) {
+        this.selectedProducts = selectedProducts;
         setFullPrice();
     }
 
-    public Special getSpecial() {
-        return special;
-    }
-
-    public void setSpecial(Special special) {
-        this.special = special;
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 
     public Discount getDiscount() {
@@ -88,7 +84,7 @@ public class ShopingCart {
     }
 
     public void addProduct(Product product) {
-        products.add(product);
+        selectedProducts.add(product);
         setFullPrice();
     }
 }

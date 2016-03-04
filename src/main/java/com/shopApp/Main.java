@@ -1,11 +1,11 @@
 package com.shopApp;
 
 import com.shopApp.discounts.Discount;
-import com.shopApp.discounts.TotalChangeableDiscount;
+import com.shopApp.discounts.VariableDiscount;
 import com.shopApp.printers.ConsolePrinter;
 import com.shopApp.printers.Printer;
 import com.shopApp.specials.Present;
-import com.shopApp.specials.Special;
+import com.shopApp.specials.Sale;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -45,11 +45,11 @@ public class Main {
         initializeChoosenProducts();
 
         Product prize = new Product("football poster", new BigDecimal(0));
-        Discount discount = new TotalChangeableDiscount();
-        Special special = new Present(productsForSpecial, prize);
-        ShopingCart shopingCart = new ShopingCart(choosenProducts, discount, special);
+        Discount discount = new VariableDiscount();
+        Sale sale = new Present(productsForSpecial, prize);
+        ShopingCart shopingCart = new ShopingCart(choosenProducts, discount, sale);
 //        shopingCart.executeDiscount();
-        shopingCart.executeSpecial();
+        shopingCart.acceptSale();
 
         Printer printer = new ConsolePrinter(System.out, shopingCart);
         printer.print();

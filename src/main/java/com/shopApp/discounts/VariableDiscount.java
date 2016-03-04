@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by employee on 3/3/16.
  */
-public class TotalChangeableDiscount implements Discount {
+public class VariableDiscount implements Discount {
 
     private final int SMALL_AMOUNT_OF_MONEY = 300;
     private final int MIDDLE_AMOUNT_OF_MONEY = 600;
@@ -17,7 +17,7 @@ public class TotalChangeableDiscount implements Discount {
 
     private int discountPercent;
 
-    public TotalChangeableDiscount() {
+    public VariableDiscount() {
         discountPercent = SMALL_DISCOUNT_PERCENT;
     }
 

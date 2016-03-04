@@ -2,8 +2,8 @@ package com.shopApp;
 
 
 import com.shopApp.discounts.Discount;
-import com.shopApp.discounts.FixedDiscount;
-import com.shopApp.discounts.TotalChangeableDiscount;
+import com.shopApp.discounts.InvariableDiscount;
+import com.shopApp.discounts.VariableDiscount;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -11,7 +11,6 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -44,35 +43,35 @@ public class ShopingCartTest {
 
     @Test
     public void testFullPriceWithoutProducts() {
-        shopingCart.setProducts(new ArrayList<Product>());
+        shopingCart.setSelectedProducts(new ArrayList<Product>());
         BigDecimal empty = new BigDecimal(0);
         assertThat(shopingCart.getFullPrice(), is(empty));
     }
 
     @Test
     public void testEndPriceWithEmptyProductsList() {
-        shopingCart.setProducts(new ArrayList<Product>());
+        shopingCart.setSelectedProducts(new ArrayList<Product>());
         BigDecimal empty = new BigDecimal(0);
-        assertThat(shopingCart.getEndPrice(), is(empty));
+        assertThat(shopingCart.getDiscountPrice(), is(empty));
     }
 
 
     @Test
     public void testSetEndPriceWithFixedDiscount() {
-        Discount fixedDiscount = new FixedDiscount();
+        Discount fixedDiscount = new InvariableDiscount();
         ShopingCart shopingCart = new ShopingCart(products, fixedDiscount, null);
         BigDecimal endPrice = (shopingCart.getFullPrice()).subtract(new BigDecimal(10));
         shopingCart.executeDiscount();
-        assertThat(shopingCart.getEndPrice(), is(endPrice));
+        assertThat(shopingCart.getDiscountPrice(), is(endPrice));
     }
 
     @Ignore
     @Test
     public void testSetEndPriceWithTotalChangeableDiscount() {
-        Discount fixedDiscount = new TotalChangeableDiscount();
+        Discount fixedDiscount = new VariableDiscount();
         ShopingCart shopingCart = new ShopingCart(products, fixedDiscount, null);
         BigDecimal endPrice = (shopingCart.getFullPrice()).subtract(fixedDiscount.calculateDiscount(new BigDecimal(60)));
-        assertThat(shopingCart.getEndPrice(), is(endPrice));
+        assertThat(shopingCart.getDiscountPrice(), is(endPrice));
     }
 
 

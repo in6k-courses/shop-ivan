@@ -10,27 +10,31 @@ import java.util.List;
  * Created by employee on 3/4/16.
  */
 public class SpecialTest {
-    protected static List<Product> choosenProducts = new ArrayList<Product>();
-    protected static List<Product> productsForSpecial = new ArrayList<Product>();
+    protected static List<Product> selectedProducts = new ArrayList<Product>();
+    protected static List<Product> saleProducts = new ArrayList<Product>();
 
     protected static void initializeProductsForSpecial() {
         Product goalkeeperGloves = new Product("Goalkeeper's gloves", new BigDecimal(300));
-        productsForSpecial.add(goalkeeperGloves);
+        saleProducts.add(goalkeeperGloves);
     }
 
     protected static void initializeChoosenProducts() {
 
         Product soccerBall = new Product("soccer ball", new BigDecimal(300));
-        choosenProducts.add(soccerBall);
+        selectedProducts.add(soccerBall);
 
         Product goalkeeperGloves = new Product("Goalkeeper's gloves", new BigDecimal(300));
-        choosenProducts.add(goalkeeperGloves);
+        selectedProducts.add(goalkeeperGloves);
 
         Product basketballBall = new Product("basketball ball", new BigDecimal(250));
-        choosenProducts.add(basketballBall);
+        selectedProducts.add(basketballBall);
 
         Product monopolyGame = new Product("monopoly game", new BigDecimal(120));
-        choosenProducts.add(basketballBall);
+        selectedProducts.add(basketballBall);
+
+    }
+    public SpecialTest() {
+        initializeChoosenProducts();
 
     }
 }

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by employee on 3/3/16.
  */
-public class FixedDiscount implements Discount {
+public class InvariableDiscount implements Discount {
 
     private static final int DISCOUNT_VALUE = 10;
 

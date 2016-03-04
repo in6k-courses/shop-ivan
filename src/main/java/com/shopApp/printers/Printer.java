@@ -2,8 +2,6 @@ package com.shopApp.printers;
 
 import com.shopApp.Product;
 import com.shopApp.ShopingCart;
-import com.shopApp.discounts.Discount;
-import com.shopApp.specials.Special;
 
 
 import java.io.PrintStream;
@@ -34,7 +32,7 @@ public abstract class Printer {
 
     public void print() {
         printHeader();
-        printCartProducts(shopingCart.getProducts());
+        printCartProducts(shopingCart.getSelectedProducts());
         printFooter();
     };
 
@@ -49,7 +47,7 @@ public abstract class Printer {
         printStream.println("Shooping Cart has:");
         for(Product product : products) {
             printStream.print(wrapper(product.getName()));
-            printStream.print(product.getCost() + "\n");
+            printStream.print(product.getPrice() + "\n");
         }
         System.out.println("=========================");
     };

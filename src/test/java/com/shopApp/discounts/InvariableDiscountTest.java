@@ -11,13 +11,13 @@ import static org.hamcrest.core.Is.is;
 /**
  * Created by ivan on 04.03.16.
  */
-public class FixedDiscountTest {
+public class InvariableDiscountTest {
 
     private static final int DISCOUNT_VALUE = 10;
 
     @Test
     public void testCalculateFixedDiscount() {
-        Discount fixedDiscount = new FixedDiscount();
+        Discount fixedDiscount = new InvariableDiscount();
         BigDecimal discount = new BigDecimal(DISCOUNT_VALUE);
 
         BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(1000)};

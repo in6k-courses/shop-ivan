@@ -2,14 +2,10 @@ package com.shopApp.specials;
 
 import com.shopApp.Product;
 import com.shopApp.ShopingCart;
-import org.hamcrest.Matcher;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.AnyOf.anyOf;
@@ -37,11 +33,11 @@ public class PresentTest extends SpecialTest{
 
     @Test
     public void testTakeParticipation() {
-        Special prize = new Present(productsForSpecial, present);
-        ShopingCart shopingCart = new ShopingCart(choosenProducts, null, prize);
+        Sale prize = new Present(saleProducts, present);
+        ShopingCart shopingCart = new ShopingCart(selectedProducts, null, prize);
 
-        shopingCart.executeSpecial();
-        assertThat(shopingCart.getProducts(), hasItems(new Product("football poster", new BigDecimal(30))));
+        shopingCart.acceptSale();
+        assertThat(shopingCart.getSelectedProducts(), hasItems(new Product("football poster", new BigDecimal(30))));
     }
 
 }
