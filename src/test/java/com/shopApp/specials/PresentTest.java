@@ -3,6 +3,7 @@ package com.shopApp.specials;
 import com.shopApp.Product;
 import com.shopApp.ShopingCart;
 import org.hamcrest.Matcher;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,27 +20,25 @@ import static org.hamcrest.core.IsCollectionContaining.hasItems;
  */
 public class PresentTest extends SpecialTest{
 
-    private static List<Product> presents = new ArrayList<Product>();
+    private static Product present;
 
 
-    public static List<Product> createPresents() {
-        List<Product> presents = new ArrayList<Product>();
-        Product poster = new Product("football poster", new BigDecimal(30));
-        presents.add(poster);
-        return presents;
+    public static Product createPresent() {
+        present = new Product("football poster", new BigDecimal(30));
+        return present;
     }
 
     @BeforeClass
     public static void initializeProductsLists() {
         initializeChoosenProducts();
         initializeProductsForSpecial();
-        presents = createPresents();
+        present = createPresent();
     }
 
     @Test
     public void testTakeParticipation() {
-        Special present = new Present(productsForSpecial, presents);
-        ShopingCart shopingCart = new ShopingCart(choosenProducts, null, present);
+        Special prize = new Present(productsForSpecial, present);
+        ShopingCart shopingCart = new ShopingCart(choosenProducts, null, prize);
 
         shopingCart.executeSpecial();
         assertThat(shopingCart.getProducts(), hasItems(new Product("football poster", new BigDecimal(30))));

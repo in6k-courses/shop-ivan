@@ -48,4 +48,9 @@ public class Product {
         result = 31 * result + cost.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "name= " + name + " " + "cost= " + cost;
+    }
 }

@@ -16,11 +16,11 @@ public class Present implements Special {
     private List<Product> productsForSpecial = new ArrayList<Product>();
     private List<Product> choosenProducts = new ArrayList<Product>();
 
-    private List<Product> presents;
+    private Product present;
 
-    public Present(List<Product> productsForSpecial, List<Product> presents) {
+    public Present(List<Product> productsForSpecial, Product present) {
         this.productsForSpecial = productsForSpecial;
-        this.presents = presents;
+        this.present = present;
     }
 
     public void takeParticipation(List<Product> choosenProducts) {
@@ -28,7 +28,7 @@ public class Present implements Special {
         for(Product choosenProduct : choosenProducts) {
             for(Product specialProduct : productsForSpecial) {
                 if(choosenProduct.equals(specialProduct)) {
-                    choosenProducts.addAll(presents);
+                    choosenProducts.add(present);
                     return;
                 }
             }

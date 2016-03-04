@@ -45,7 +45,7 @@ public class SpecialDiscountTest extends SpecialTest {
         Product goalkeeperGlove = new Product("Goalkeeper's gloves", new BigDecimal(300));
         List<Product> cartProducts = shopingCart.getProducts();
         Product specialProduct = findProductByName("Goalkeeper's gloves", cartProducts);
-        
+
         shopingCart.executeSpecial();
         assertThat(specialProduct.getCost(), is(new BigDecimal(150)));
     }

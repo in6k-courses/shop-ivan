@@ -4,9 +4,6 @@ package com.shopApp;
 import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.FixedDiscount;
 import com.shopApp.discounts.TotalChangeableDiscount;
-import com.shopApp.printers.Printer;
-import org.hamcrest.Matcher;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -32,16 +29,6 @@ public class ShopingCartTest {
     private final static BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(600),
             new BigDecimal(1000), new BigDecimal(1200)};
 
-    //    private static void createProductSet() {
-//        BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(600),
-//                new BigDecimal(1000), new BigDecimal(1200)};
-//        for(int i = 0; i < moneyValues.length; i++) {
-//            String productName = "product" + i;
-//            BigDecimal price = moneyValues[i];
-//            Product product = new Product(productName, price);
-//            products.add(product);
-//        }
-//    }
     private static void fillProducts() {
         for (int i = 0; i < 5; i++) {
             products.add(new Product("product", moneyValues[i]));
