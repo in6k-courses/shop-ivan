@@ -12,17 +12,17 @@ import java.util.List;
  */
 public class ShopingCart {
     private Discount discount;
-    private Special sale;
+    private Special special;
 
     private List<Product> products = new ArrayList<Product>();
 
     private BigDecimal fullPrice;
     private BigDecimal endPrice;
 
-    public ShopingCart(List<Product> products, Discount discount, Special sale) {
+    public ShopingCart(List<Product> products, Discount discount, Special special) {
         this(products);
         this.discount = discount;
-        this.sale = sale;
+        this.special = special;
     }
 
     public ShopingCart(List<Product> products) {
@@ -30,9 +30,9 @@ public class ShopingCart {
         setFullPrice();
     }
 
-    private BigDecimal executeDiscount(BigDecimal executeDiscount) {
-        endPrice = fullPrice.subtract(discount.calculateDiscount(executeDiscount));
-        return endPrice;
+    public void executeDiscount() {
+        BigDecimal discountFromPrice = discount.calculateDiscount(fullPrice);
+        endPrice = fullPrice.subtract(discountFromPrice);
     }
 
     private void setFullPrice() {
@@ -60,12 +60,12 @@ public class ShopingCart {
         this.products = products;
     }
 
-    public Special getSale() {
-        return sale;
+    public Special getSpecial() {
+        return special;
     }
 
-    public void setSale(Special sale) {
-        this.sale = sale;
+    public void setSpecial(Special special) {
+        this.special = special;
     }
 
     public Discount getDiscount() {

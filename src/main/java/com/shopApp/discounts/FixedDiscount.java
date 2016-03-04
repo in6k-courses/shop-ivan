@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  */
 public class FixedDiscount implements Discount {
 
-    private int DISCOUNT_VALUE = 10;
+    private static final int DISCOUNT_VALUE = 10;
 
     public BigDecimal calculateDiscount(BigDecimal price) {
         return new BigDecimal(DISCOUNT_VALUE);
