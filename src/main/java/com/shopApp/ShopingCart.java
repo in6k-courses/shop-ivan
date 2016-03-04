@@ -35,6 +35,10 @@ public class ShopingCart {
         endPrice = fullPrice.subtract(discountFromPrice);
     }
 
+    public void executeSpecial() {
+        special.takeParticipation(products);
+    }
+
     private void setFullPrice() {
         BigDecimal sum = new BigDecimal("0");
         for (int i = 0; i < products.size(); i++) {

@@ -11,8 +11,6 @@ public class TotalChangeableDiscount implements Discount {
     private final int MIDDLE_AMOUNT_OF_MONEY = 600;
     private final int BIG_AMOUNT_OF_MONAY = 1000;
 
-    private final int ONE_HUNDRED = 100;
-
     private final int SMALL_DISCOUNT_PERCENT = 3;
     private final int MIDDLE_DISCOUNT_PERCENT = 5;
     private final int BIG_DISCOUNT_PERCENT = 7;
@@ -26,7 +24,7 @@ public class TotalChangeableDiscount implements Discount {
     public BigDecimal calculateDiscount(BigDecimal price) {
         discountPercent = getDiscountPercent(price);
         BigDecimal percent = new BigDecimal(discountPercent);
-        BigDecimal oneHundredPercent = new BigDecimal(ONE_HUNDRED);
+        BigDecimal oneHundredPercent = new BigDecimal(ONE_HUNDRED_PERCENT);
         BigDecimal discount = (price.multiply(percent)).divide(oneHundredPercent);
         return discount;
     }

@@ -9,7 +9,6 @@ public class ConsolePrinter implements Printer {
     private void printHeader() {
     }
 
-    @Override
     public void print(ShopingCart shopingCart) {
 
     }
