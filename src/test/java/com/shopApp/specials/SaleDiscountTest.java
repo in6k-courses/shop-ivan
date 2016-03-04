@@ -26,9 +26,10 @@ public class SaleDiscountTest extends SpecialTest {
     }
 
     @Test
-    public void testTakeParticipation() {
-        Sale present = new SaleDiscount(saleProducts);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts, null, present);
+    public void testAcceptSale() {
+        Sale saleDiscount = new SaleDiscount(saleProducts);
+        ShopingCart shopingCart = new ShopingCart(selectedProducts);
+        shopingCart.setSale(saleDiscount);
 
         Product goalkeeperGloves = new Product("Goalkeeper's gloves", new BigDecimal(300));
 
@@ -37,10 +38,11 @@ public class SaleDiscountTest extends SpecialTest {
 
     @Test
     public void testProductCostAfterDiscount() {
-        Sale present = new SaleDiscount(saleProducts);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts, null, present);
+        Sale saleDiscount = new SaleDiscount(saleProducts);
+        ShopingCart shopingCart = new ShopingCart(selectedProducts);
+        shopingCart.setSale(saleDiscount);
 
-        Product goalkeeperGlove = new Product("Goalkeeper's gloves", new BigDecimal(300));
+
         List<Product> cartProducts = shopingCart.getSelectedProducts();
         Product specialProduct = findProductByName("Goalkeeper's gloves", cartProducts);
 

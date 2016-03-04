@@ -45,9 +45,14 @@ public class Main {
         initializeChoosenProducts();
 
         Product prize = new Product("football poster", new BigDecimal(0));
-        Discount discount = new VariableDiscount();
-        Sale sale = new SalePresent(saleProducts, prize);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts, discount, sale);
+
+        Discount variableDiscount = new VariableDiscount();
+        Sale salePresent = new SalePresent(saleProducts, prize);
+
+        ShopingCart shopingCart = new ShopingCart(selectedProducts);
+        shopingCart.setDiscount(variableDiscount);
+        shopingCart.setSale(salePresent);
+
         shopingCart.executeDiscount();
         shopingCart.acceptSale();
 

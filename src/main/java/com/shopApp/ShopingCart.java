@@ -1,6 +1,8 @@
 package com.shopApp;
 
 import com.shopApp.discounts.Discount;
+import com.shopApp.discounts.NullDiscount;
+import com.shopApp.specials.NullSale;
 import com.shopApp.specials.Sale;
 
 import java.math.BigDecimal;
@@ -11,6 +13,7 @@ import java.util.List;
  * Created by employee on 3/3/16.
  */
 public class ShopingCart {
+
     private Discount discount;
     private Sale sale;
 
@@ -19,13 +22,10 @@ public class ShopingCart {
     private BigDecimal fullPrice;
     private BigDecimal discountPrice;
 
-    public ShopingCart(List<Product> selectedProducts, Discount discount, Sale sale) {
-        this(selectedProducts);
-        this.discount = discount;
-        this.sale = sale;
-    }
 
     public ShopingCart(List<Product> selectedProducts) {
+        discount = new NullDiscount();
+        sale = new NullSale();
         this.selectedProducts = selectedProducts;
         setFullPrice();
     }

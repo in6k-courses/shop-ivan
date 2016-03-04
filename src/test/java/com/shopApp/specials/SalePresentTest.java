@@ -34,7 +34,8 @@ public class SalePresentTest extends SpecialTest{
     @Test
     public void testTakeParticipationInSale() {
         Sale salePresent = new SalePresent(saleProducts, present);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts, new NullDiscount(), salePresent);
+        ShopingCart shopingCart = new ShopingCart(selectedProducts);
+        shopingCart.setSale(salePresent);
 
         shopingCart.acceptSale();
         assertThat(shopingCart.getSelectedProducts(), hasItems(new Product("football poster", new BigDecimal(30))));
