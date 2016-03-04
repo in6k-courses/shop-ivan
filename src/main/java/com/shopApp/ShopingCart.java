@@ -16,8 +16,8 @@ public class ShopingCart {
 
     private List<Product> products = new ArrayList<Product>();
 
-    private BigDecimal fullPrice;
-    private BigDecimal endPrice;
+    private BigDecimal fullPrice = new BigDecimal(0);
+    private BigDecimal endPrice = new BigDecimal(0);
 
     public ShopingCart(List<Product> products, Discount discount, Special special) {
         this(products);
@@ -58,6 +58,7 @@ public class ShopingCart {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+        setFullPrice();
     }
 
     public Special getSpecial() {
@@ -74,6 +75,7 @@ public class ShopingCart {
 
     public void setDiscount(Discount discount) {
         this.discount = discount;
+        setFullPrice();
     }
 
     public void addProduct(Product product) {

@@ -2,17 +2,18 @@ package com.shopApp.specials;
 
 import com.shopApp.ShopingCart;
 
+import java.util.List;
+
 /**
  * Created by employee on 3/3/16.
  */
 public class Present implements Special {
 
-    @Override
-    public void hasProductsForParticipation(ShopingCart shopingCart) {
 
+    public void hasProductsForParticipation(ShopingCart shopingCart) {
+//        List<Products>
     }
 
-    @Override
     public void takeParticipation() {
 
     }
