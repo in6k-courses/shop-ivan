@@ -4,7 +4,7 @@ import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.VariableDiscount;
 import com.shopApp.printers.ConsolePrinter;
 import com.shopApp.printers.Printer;
-import com.shopApp.specials.Present;
+import com.shopApp.specials.SalePresent;
 import com.shopApp.specials.Sale;
 
 import java.math.BigDecimal;
@@ -15,28 +15,28 @@ import java.util.List;
  * Created by employee on 3/4/16.
  */
 public class Main {
-    private static List<Product> choosenProducts = new ArrayList<Product>();
-    private static List<Product> productsForSpecial = new ArrayList<Product>();
+    private static List<Product> selectedProducts = new ArrayList<Product>();
+    private static List<Product> saleProducts = new ArrayList<Product>();
 
 
     protected static void initializeProductsForSpecial() {
         Product goalkeeperGloves = new Product("Goalkeeper's gloves", new BigDecimal(300));
-        productsForSpecial.add(goalkeeperGloves);
+        saleProducts.add(goalkeeperGloves);
     }
 
     protected static void initializeChoosenProducts() {
 
-        Product soccerBall = new Product("soccer ball", new BigDecimal(300));
-        choosenProducts.add(soccerBall);
+        Product soccerBall = new Product("soccer ball", new BigDecimal(1100));
+        selectedProducts.add(soccerBall);
 
         Product goalkeeperGloves = new Product("Goalkeeper's gloves", new BigDecimal(300));
-        choosenProducts.add(goalkeeperGloves);
+        selectedProducts.add(goalkeeperGloves);
 
         Product basketballBall = new Product("basketball ball", new BigDecimal(250));
-        choosenProducts.add(basketballBall);
+        selectedProducts.add(basketballBall);
 
         Product monopolyGame = new Product("monopoly game", new BigDecimal(120));
-        choosenProducts.add(basketballBall);
+        selectedProducts.add(basketballBall);
 
     }
 
@@ -46,9 +46,9 @@ public class Main {
 
         Product prize = new Product("football poster", new BigDecimal(0));
         Discount discount = new VariableDiscount();
-        Sale sale = new Present(productsForSpecial, prize);
-        ShopingCart shopingCart = new ShopingCart(choosenProducts, discount, sale);
-//        shopingCart.executeDiscount();
+        Sale sale = new SalePresent(saleProducts, prize);
+        ShopingCart shopingCart = new ShopingCart(selectedProducts, discount, sale);
+        shopingCart.executeDiscount();
         shopingCart.acceptSale();
 
         Printer printer = new ConsolePrinter(System.out, shopingCart);

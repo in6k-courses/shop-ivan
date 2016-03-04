@@ -4,6 +4,7 @@ package com.shopApp;
 import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.InvariableDiscount;
 import com.shopApp.discounts.VariableDiscount;
+import com.shopApp.specials.NullSale;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -23,15 +24,13 @@ public class ShopingCartTest {
 
     private static ShopingCart shopingCart;
 
-    private static List<Product> products = new ArrayList<Product>();
+    private static List<Product> products;
 
-    private final static BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(600),
-            new BigDecimal(1000), new BigDecimal(1200)};
+
 
     private static void fillProducts() {
-        for (int i = 0; i < 5; i++) {
-            products.add(new Product("product", moneyValues[i]));
-        }
+        ShopingCartFactory shopingCartFactory = new ShopingCartFactory();
+        products = shopingCartFactory.getProductsSet();
     }
 
     @BeforeClass
@@ -59,7 +58,7 @@ public class ShopingCartTest {
     @Test
     public void testSetEndPriceWithFixedDiscount() {
         Discount fixedDiscount = new InvariableDiscount();
-        ShopingCart shopingCart = new ShopingCart(products, fixedDiscount, null);
+        ShopingCart shopingCart = new ShopingCart(products, fixedDiscount, new NullSale());
         BigDecimal endPrice = (shopingCart.getFullPrice()).subtract(new BigDecimal(10));
         shopingCart.executeDiscount();
         assertThat(shopingCart.getDiscountPrice(), is(endPrice));
@@ -69,7 +68,7 @@ public class ShopingCartTest {
     @Test
     public void testSetEndPriceWithTotalChangeableDiscount() {
         Discount fixedDiscount = new VariableDiscount();
-        ShopingCart shopingCart = new ShopingCart(products, fixedDiscount, null);
+        ShopingCart shopingCart = new ShopingCart(products, fixedDiscount, new NullSale());
         BigDecimal endPrice = (shopingCart.getFullPrice()).subtract(fixedDiscount.calculateDiscount(new BigDecimal(60)));
         assertThat(shopingCart.getDiscountPrice(), is(endPrice));
     }

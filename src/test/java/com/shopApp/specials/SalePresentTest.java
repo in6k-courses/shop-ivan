@@ -2,19 +2,19 @@ package com.shopApp.specials;
 
 import com.shopApp.Product;
 import com.shopApp.ShopingCart;
+import com.shopApp.discounts.NullDiscount;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.AnyOf.anyOf;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 
 /**
  * Created by employee on 3/4/16.
  */
-public class PresentTest extends SpecialTest{
+public class SalePresentTest extends SpecialTest{
 
     private static Product present;
 
@@ -32,9 +32,9 @@ public class PresentTest extends SpecialTest{
     }
 
     @Test
-    public void testTakeParticipation() {
-        Sale prize = new Present(saleProducts, present);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts, null, prize);
+    public void testTakeParticipationInSale() {
+        Sale salePresent = new SalePresent(saleProducts, present);
+        ShopingCart shopingCart = new ShopingCart(selectedProducts, new NullDiscount(), salePresent);
 
         shopingCart.acceptSale();
         assertThat(shopingCart.getSelectedProducts(), hasItems(new Product("football poster", new BigDecimal(30))));

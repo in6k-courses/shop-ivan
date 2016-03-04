@@ -36,7 +36,7 @@ public class ShopingCart {
     }
 
     public void acceptSale() {
-        sale.takeParticipation(selectedProducts);
+        sale.acceptSale(selectedProducts);
     }
 
     private void setFullPrice() {

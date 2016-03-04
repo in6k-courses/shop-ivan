@@ -12,13 +12,14 @@ import java.util.List;
  * Created by employee on 3/4/16.
  */
 public class SaleDiscount implements Sale {
+
     private List<Product> saleProducts = new ArrayList<Product>();
 
     public SaleDiscount(List<Product> saleProducts) {
         this.saleProducts = saleProducts;
     }
 
-    public void takeParticipation(List<Product> cartProducts) {
+    public void acceptSale(List<Product> cartProducts) {
         Discount productDiscount = new ProductDiscount();
 
         for (Product cartProduct : cartProducts) {

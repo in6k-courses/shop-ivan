@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface Sale {
 
-    void takeParticipation(List<Product> choosenProducts);
+    void acceptSale(List<Product> choosenProducts);
 
 }
