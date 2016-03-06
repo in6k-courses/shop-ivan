@@ -12,9 +12,7 @@ import java.util.List;
  */
 public abstract class Printer {
 
-    protected static final String NAME_FORMAT = "%-25s";
-
-    private PrintStream printStream = System.out;
+    protected PrintStream printStream;
     private ShoppingCart shoppingCart;
 
     public Printer(ShoppingCart shoppingCart) {
@@ -28,28 +26,52 @@ public abstract class Printer {
 
     protected abstract String wrapper(String line) ;
 
-    abstract void printHeader();
+    public void printHeader() {
+        printStream.println("Check");
+    }
+
+    abstract void printDivideLine() ;
 
     public void print() {
         printHeader();
+        printDivideLine();
         printCartProducts(shoppingCart.getSelectedProducts());
-
+        printDivideLine();
         printFooter();
     };
 
-    void printFooter() {
-        printStream.print("Sum = ");
-        printStream.print(shoppingCart.getFullPrice() + "\n");
-        printStream.print("Discount = ");
-        printStream.print(shoppingCart.getDiscountSize() + "\n");
-    };
+    private void printFooter() {
+        printStream.println(getSumLine());
+        printStream.println(getDiscountSize());
+        printStream.println(getDiscountPrice());
+    }
 
-    public void printCartProducts(List<Product> products) {
-        printStream.println("Shooping Cart has:");
+    private String getSumLine() {
+        String title = wrapper("Sum: ");
+        String value = wrapper(shoppingCart.getFullPrice().toString());
+        return title + value;
+    }
+
+    private String getDiscountSize() {
+        String title = wrapper("Discount: ");
+        String value = wrapper(shoppingCart.getDiscountSize().toString());
+        return title + value;
+    }
+
+    private String getDiscountPrice() {
+        String title = wrapper("To pay: ");
+        String value = wrapper(shoppingCart.getDiscountPrice().toString());
+        return title + value;
+    }
+
+    private void printCartProducts(List<Product> products) {
+        printStream.println(wrapper("Shooping Cart has:"));
+        printDivideLine();
         for(Product product : products) {
             printStream.print(wrapper(product.getName()));
-            printStream.print(product.getPrice() + "\n");
+            printStream.print(wrapper(product.getPrice().toString()) + "\n");
         }
-        System.out.println("=========================");
-    };
+    }
+
+
 }

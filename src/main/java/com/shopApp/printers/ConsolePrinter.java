@@ -9,12 +9,11 @@ import java.io.PrintStream;
  */
 public class ConsolePrinter extends Printer {
 
-    public ConsolePrinter(ShoppingCart shoppingCart) {
-        super(shoppingCart);
-    }
+    private static final String NAME_FORMAT = "%-25s";
+    private static final int DIVIDER_LENGTH = 30;
 
-    public ConsolePrinter(PrintStream printStream, ShoppingCart shoppingCart) {
-        super(printStream, shoppingCart);
+    public ConsolePrinter(ShoppingCart shoppingCart) {
+        super(System.out, shoppingCart);
     }
 
     @Override
@@ -22,9 +21,12 @@ public class ConsolePrinter extends Printer {
         return String.format(NAME_FORMAT, line);
     }
 
-    @Override
-    void printHeader() {
-        System.out.println("Check");
-        System.out.println("=======================");
+    public void printDivideLine() {
+        String divideSign = "=";
+        String divideLine =  "";
+        for(int i = 0; i < DIVIDER_LENGTH; i++) {
+            divideLine += divideSign;
+        }
+        printStream.println(divideLine);
     }
 }

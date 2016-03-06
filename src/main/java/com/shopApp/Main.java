@@ -59,7 +59,7 @@ public class Main {
         shoppingCart.acceptSale();
 
 
-        Printer printer = new ConsolePrinter(System.out, shoppingCart);
+        Printer printer = new ConsolePrinter(shoppingCart);
         printer.print();
     }
 }
