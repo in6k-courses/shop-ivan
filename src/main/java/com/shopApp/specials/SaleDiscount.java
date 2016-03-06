@@ -1,6 +1,7 @@
 package com.shopApp.specials;
 
 import com.shopApp.Product;
+import com.shopApp.ShoppingCart;
 import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.ProductDiscount;
 
@@ -14,23 +15,34 @@ import java.util.List;
 public class SaleDiscount implements Sale {
 
     private List<Product> saleProducts = new ArrayList<Product>();
+    private Discount productDiscount = new ProductDiscount();
 
     public SaleDiscount(List<Product> saleProducts) {
         this.saleProducts = saleProducts;
     }
 
-    public void acceptSale(List<Product> cartProducts) {
-        Discount productDiscount = new ProductDiscount();
+    public void acceptSaleFor(ShoppingCart shoppingCart) {
 
-        for (Product cartProduct : cartProducts) {
-            for (Product saleProduct : saleProducts) {
-                if (cartProduct.equals(saleProduct)) {
-                    BigDecimal productPrice = cartProduct.getPrice();
-                    BigDecimal salePrice = productDiscount.calculateDiscount(productPrice);
-                    cartProduct.setPrice(salePrice);
-                }
+        List<Product> cartProducts = shoppingCart.getSelectedProducts();
+        applyDiscount(cartProducts);
+    }
+
+    private void applyDiscount(List<Product> cartProducts) {
+        for(Product product : cartProducts) {
+            if(isSaleProduct(product)) {
+                makeDiscountFor(product);
             }
         }
+    }
+
+    private void makeDiscountFor(Product product) {
+        BigDecimal productPrice = product.getPrice();
+        BigDecimal salePrice = productDiscount.calculateDiscount(productPrice);
+        product.setPrice(salePrice);
+    }
+
+    private Boolean isSaleProduct(Product product) {
+        return saleProducts.contains(product);
     }
 
 }

@@ -12,62 +12,53 @@ import java.util.List;
 /**
  * Created by employee on 3/3/16.
  */
-public class ShopingCart {
+public class ShoppingCart {
 
     private Discount discount;
     private Sale sale;
 
     private List<Product> selectedProducts = new ArrayList<Product>();
 
-    private BigDecimal fullPrice;
-    private BigDecimal discountPrice;
+    private BigDecimal fullPrice = BigDecimal.ZERO;
+    private BigDecimal discountSize = BigDecimal.ZERO;
 
 
-    public ShopingCart(List<Product> selectedProducts) {
-        discount = new NullDiscount();
-        sale = new NullSale();
+    public ShoppingCart(List<Product> selectedProducts) {
+        this.discount = new NullDiscount();
+        this.sale = new NullSale();
         this.selectedProducts = selectedProducts;
-        setFullPrice();
+        changePrices();
     }
 
     public void executeDiscount() {
-        BigDecimal discountFromPrice = discount.calculateDiscount(fullPrice);
-        discountPrice = fullPrice.subtract(discountFromPrice);
+        discountSize = discount.calculateDiscount(fullPrice);
+        changePrices();
     }
 
     public void acceptSale() {
-        sale.acceptSale(selectedProducts);
+        sale.acceptSaleFor(this);
+        changePrices();
     }
-
-    private void setFullPrice() {
-        BigDecimal sum = new BigDecimal("0");
-        for (int i = 0; i < selectedProducts.size(); i++) {
-            sum = sum.add(selectedProducts.get(i).getPrice());
-        }
-        fullPrice = sum;
-        discountPrice = fullPrice;
-    }
-
 
     public BigDecimal getFullPrice() {
         return fullPrice;
     }
 
-    public BigDecimal getDiscountPrice() {
-        return discountPrice;
+    public BigDecimal getDiscountSize() {
+        return discountSize;
     }
 
     public List<Product> getSelectedProducts() {
         return selectedProducts;
     }
 
-    public BigDecimal discountSize() {
-        return fullPrice.subtract(discountPrice);
+    public BigDecimal getDiscountPrice() {
+        return fullPrice.subtract(discountSize);
     }
 
     public void setSelectedProducts(List<Product> selectedProducts) {
         this.selectedProducts = selectedProducts;
-        setFullPrice();
+        changePrices();
     }
 
     public void setSale(Sale sale) {
@@ -80,11 +71,33 @@ public class ShopingCart {
 
     public void setDiscount(Discount discount) {
         this.discount = discount;
-        setFullPrice();
+        changePrices();
     }
 
     public void addProduct(Product product) {
         selectedProducts.add(product);
-        setFullPrice();
+        changePrices();
     }
+
+    private void changePrices() {
+        fullPrice = sumOfProductPrices();
+        if(isDiscountExist()) {
+            discountSize = discount.calculateDiscount(fullPrice);
+        }
+    }
+
+    private boolean isDiscountExist() {
+        return !(discount instanceof NullDiscount);
+    }
+
+    private BigDecimal sumOfProductPrices() {
+        BigDecimal sum = BigDecimal.ZERO;
+
+        for(Product product : selectedProducts) {
+            sum = sum.add(product.getPrice());
+        }
+
+        return sum;
+    }
+
 }

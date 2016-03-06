@@ -1,7 +1,7 @@
 package com.shopApp.print;
 
-import com.shopApp.ShopingCart;
-import com.shopApp.ShopingCartFactory;
+import com.shopApp.ShoppingCart;
+import com.shopApp.ShoppingCartFactory;
 import com.shopApp.printers.ConsolePrinter;
 import com.shopApp.printers.Printer;
 
@@ -12,12 +12,12 @@ import com.shopApp.printers.Printer;
 public class ConsolePrinterTest {
 
     private Printer printer;
-    private ShopingCart shopingCart;
-    private ShopingCartFactory shopingCartFactory;
+    private ShoppingCart shoppingCart;
+    private ShoppingCartFactory shoppingCartFactory;
 
     public void ConsolePrinterTest() {
-        shopingCartFactory = new ShopingCartFactory();
-        shopingCart = new ShopingCart(shopingCartFactory.getProductsSet());
-        printer = new ConsolePrinter(shopingCart);
+        shoppingCartFactory = new ShoppingCartFactory();
+        shoppingCart = new ShoppingCart(shoppingCartFactory.getProductsSet());
+        printer = new ConsolePrinter(shoppingCart);
     }
 }

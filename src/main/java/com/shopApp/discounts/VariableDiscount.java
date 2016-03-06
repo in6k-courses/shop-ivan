@@ -37,13 +37,17 @@ public class VariableDiscount implements Discount {
 
     private boolean isSmallMoney(BigDecimal amount) {
         BigDecimal smallMoney = new BigDecimal(SMALL_AMOUNT_OF_MONEY);
-        boolean isSmallAmount = (amount.compareTo(smallMoney) > 0) ? false : true;
-        return isSmallAmount;
+        if(amount.compareTo(smallMoney) <= 0) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isMiddleMoney(BigDecimal amount) {
         BigDecimal middleMoney = new BigDecimal(MIDDLE_AMOUNT_OF_MONEY);
-        boolean isMiddleAmount = (amount.compareTo(middleMoney) > 0) ? false : true;
-        return isMiddleAmount;
+        if(amount.compareTo(middleMoney) <= 0) {
+            return true;
+        }
+        return false;
     }
 }

@@ -1,16 +1,12 @@
 package com.shopApp.specials;
 
-import com.shopApp.Product;
-import com.shopApp.ShopingCart;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.shopApp.ShoppingCart;
 
 /**
  * Created by employee on 3/3/16.
  */
 public interface Sale {
 
-    void acceptSale(List<Product> choosenProducts);
+    void acceptSaleFor(ShoppingCart shoppingCart);
 
 }

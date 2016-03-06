@@ -1,6 +1,6 @@
 package com.shopApp.printers;
 
-import com.shopApp.ShopingCart;
+import com.shopApp.ShoppingCart;
 
 import java.io.PrintStream;
 
@@ -9,12 +9,12 @@ import java.io.PrintStream;
  */
 public class ConsolePrinter extends Printer {
 
-    public ConsolePrinter(ShopingCart shopingCart) {
-        super(shopingCart);
+    public ConsolePrinter(ShoppingCart shoppingCart) {
+        super(shoppingCart);
     }
 
-    public ConsolePrinter(PrintStream printStream, ShopingCart shopingCart) {
-        super(printStream, shopingCart);
+    public ConsolePrinter(PrintStream printStream, ShoppingCart shoppingCart) {
+        super(printStream, shoppingCart);
     }
 
     @Override

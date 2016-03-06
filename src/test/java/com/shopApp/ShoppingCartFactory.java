@@ -7,12 +7,12 @@ import java.util.List;
 /**
  * Created by employee on 3/4/16.
  */
-public class ShopingCartFactory {
+public class ShoppingCartFactory {
 
-    private  List<Product> products;
+   private List<Product> products;
 
-    public ShopingCartFactory() {
-        products = new ArrayList<Product>();
+    public ShoppingCartFactory() {
+        products = createProductsSet();
     }
 
     public List<Product> getProductsSet() {
@@ -20,6 +20,8 @@ public class ShopingCartFactory {
     }
 
     private List<Product> createProductsSet() {
+        List<Product> products = new ArrayList<>();
+
         Product soccerBall = createProduct("soccer ball", 1100);
         products.add(soccerBall);
 
@@ -30,7 +32,7 @@ public class ShopingCartFactory {
         products.add(basketballBall);
 
         Product monopolyGame = createProduct("monopoly game", 120);
-        products.add(basketballBall);
+        products.add(monopolyGame);
 
         return products;
     }

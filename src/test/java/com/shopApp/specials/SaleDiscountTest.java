@@ -1,7 +1,7 @@
 package com.shopApp.specials;
 
 import com.shopApp.Product;
-import com.shopApp.ShopingCart;
+import com.shopApp.ShoppingCart;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,35 +18,17 @@ import static org.hamcrest.core.IsCollectionContaining.hasItems;
  */
 public class SaleDiscountTest extends SpecialTest {
 
-
-    @BeforeClass
-    public static void initializeProductsLists() {
-        initializeChoosenProducts();
-        initializeProductsForSpecial();
-    }
-
-    @Test
-    public void testAcceptSale() {
-        Sale saleDiscount = new SaleDiscount(saleProducts);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts);
-        shopingCart.setSale(saleDiscount);
-
-        Product goalkeeperGloves = new Product("Goalkeeper's gloves", new BigDecimal(300));
-
-        assertThat(shopingCart.getSelectedProducts(), hasItems(goalkeeperGloves));
-    }
-
     @Test
     public void testProductCostAfterDiscount() {
-        Sale saleDiscount = new SaleDiscount(saleProducts);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts);
-        shopingCart.setSale(saleDiscount);
+        sale = new SaleDiscount(saleProducts);
+        shoppingCart = new ShoppingCart(selectedProducts);
+        shoppingCart.setSale(sale);
 
 
-        List<Product> cartProducts = shopingCart.getSelectedProducts();
+        List<Product> cartProducts = shoppingCart.getSelectedProducts();
         Product specialProduct = findProductByName("Goalkeeper's gloves", cartProducts);
 
-        shopingCart.acceptSale();
+        shoppingCart.acceptSale();
         assertThat(specialProduct.getPrice(), is(new BigDecimal(150)));
     }
 

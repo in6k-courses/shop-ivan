@@ -4,6 +4,7 @@ import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.VariableDiscount;
 import com.shopApp.printers.ConsolePrinter;
 import com.shopApp.printers.Printer;
+import com.shopApp.specials.SaleDiscount;
 import com.shopApp.specials.SalePresent;
 import com.shopApp.specials.Sale;
 
@@ -19,12 +20,12 @@ public class Main {
     private static List<Product> saleProducts = new ArrayList<Product>();
 
 
-    protected static void initializeProductsForSpecial() {
+    protected static void createSaleProducts() {
         Product goalkeeperGloves = new Product("Goalkeeper's gloves", new BigDecimal(300));
         saleProducts.add(goalkeeperGloves);
     }
 
-    protected static void initializeChoosenProducts() {
+    protected static void selectSelectedProduct() {
 
         Product soccerBall = new Product("soccer ball", new BigDecimal(1100));
         selectedProducts.add(soccerBall);
@@ -36,27 +37,29 @@ public class Main {
         selectedProducts.add(basketballBall);
 
         Product monopolyGame = new Product("monopoly game", new BigDecimal(120));
-        selectedProducts.add(basketballBall);
+        selectedProducts.add(monopolyGame);
 
     }
 
     public static void main(String[] args) {
-        initializeProductsForSpecial();
-        initializeChoosenProducts();
+        createSaleProducts();
+        selectSelectedProduct();
 
-        Product prize = new Product("football poster", new BigDecimal(0));
+        Product prize = new Product("football poster", new BigDecimal(52));
 
         Discount variableDiscount = new VariableDiscount();
+
         Sale salePresent = new SalePresent(saleProducts, prize);
+        Sale saleDiscount = new SaleDiscount(saleProducts);
 
-        ShopingCart shopingCart = new ShopingCart(selectedProducts);
-        shopingCart.setDiscount(variableDiscount);
-        shopingCart.setSale(salePresent);
+        ShoppingCart shoppingCart = new ShoppingCart(selectedProducts);
+        shoppingCart.setDiscount(variableDiscount);
+        shoppingCart.setSale(salePresent);
+        shoppingCart.executeDiscount();
+        shoppingCart.acceptSale();
 
-        shopingCart.executeDiscount();
-        shopingCart.acceptSale();
 
-        Printer printer = new ConsolePrinter(System.out, shopingCart);
+        Printer printer = new ConsolePrinter(System.out, shoppingCart);
         printer.print();
     }
 }

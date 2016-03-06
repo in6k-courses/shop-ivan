@@ -1,7 +1,7 @@
 package com.shopApp.printers;
 
 import com.shopApp.Product;
-import com.shopApp.ShopingCart;
+import com.shopApp.ShoppingCart;
 
 
 import java.io.PrintStream;
@@ -15,14 +15,14 @@ public abstract class Printer {
     protected static final String NAME_FORMAT = "%-25s";
 
     private PrintStream printStream = System.out;
-    private ShopingCart shopingCart;
+    private ShoppingCart shoppingCart;
 
-    public Printer(ShopingCart shopingCart) {
-        this.shopingCart = shopingCart;
+    public Printer(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
-    public Printer(PrintStream printStream, ShopingCart shopingCart) {
-        this(shopingCart);
+    public Printer(PrintStream printStream, ShoppingCart shoppingCart) {
+        this(shoppingCart);
         this.printStream = printStream;
     }
 
@@ -32,15 +32,16 @@ public abstract class Printer {
 
     public void print() {
         printHeader();
-        printCartProducts(shopingCart.getSelectedProducts());
+        printCartProducts(shoppingCart.getSelectedProducts());
+
         printFooter();
     };
 
     void printFooter() {
         printStream.print("Sum = ");
-        printStream.print(shopingCart.getFullPrice() + "\n");
+        printStream.print(shoppingCart.getFullPrice() + "\n");
         printStream.print("Discount = ");
-        printStream.print(shopingCart.discountSize() + "\n");
+        printStream.print(shoppingCart.getDiscountSize() + "\n");
     };
 
     public void printCartProducts(List<Product> products) {

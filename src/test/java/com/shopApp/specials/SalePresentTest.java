@@ -1,8 +1,7 @@
 package com.shopApp.specials;
 
 import com.shopApp.Product;
-import com.shopApp.ShopingCart;
-import com.shopApp.discounts.NullDiscount;
+import com.shopApp.ShoppingCart;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -14,31 +13,24 @@ import static org.hamcrest.core.IsCollectionContaining.hasItems;
 /**
  * Created by employee on 3/4/16.
  */
-public class SalePresentTest extends SpecialTest{
+public class SalePresentTest extends SpecialTest {
 
-    private static Product present;
+    private Product present;
 
 
-    public static Product createPresent() {
-        present = new Product("football poster", new BigDecimal(30));
+    public Product createPresent() {
+        present = new Product("football poster", new BigDecimal(0));
         return present;
-    }
-
-    @BeforeClass
-    public static void initializeProductsLists() {
-        initializeChoosenProducts();
-        initializeProductsForSpecial();
-        present = createPresent();
     }
 
     @Test
     public void testTakeParticipationInSale() {
-        Sale salePresent = new SalePresent(saleProducts, present);
-        ShopingCart shopingCart = new ShopingCart(selectedProducts);
-        shopingCart.setSale(salePresent);
+        sale = new SalePresent(saleProducts, createPresent());
+        shoppingCart = new ShoppingCart(selectedProducts);
+        shoppingCart.setSale(sale);
+        shoppingCart.acceptSale();
 
-        shopingCart.acceptSale();
-        assertThat(shopingCart.getSelectedProducts(), hasItems(new Product("football poster", new BigDecimal(30))));
+        assertThat(shoppingCart.getSelectedProducts(), hasItems(new Product("football poster", new BigDecimal(0))));
     }
 
 }

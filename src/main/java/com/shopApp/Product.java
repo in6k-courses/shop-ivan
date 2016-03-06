@@ -30,6 +30,10 @@ public class Product {
         this.price = price;
     }
 
+    public void getDiscount() {
+        return;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
