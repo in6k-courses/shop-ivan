@@ -9,14 +9,20 @@ import java.util.List;
  */
 public class ShoppingCartFactory {
 
-   private List<Product> products;
+    private List<Product> products;
+    private ShoppingCart shoppingCart;
 
     public ShoppingCartFactory() {
         products = createProductsSet();
+        shoppingCart = new ShoppingCart(products);
     }
 
     public List<Product> getProductsSet() {
         return products;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
     }
 
     private List<Product> createProductsSet() {
@@ -37,7 +43,7 @@ public class ShoppingCartFactory {
         return products;
     }
 
-    private Product createProduct(String  name, double cost) {
+    private Product createProduct(String name, double cost) {
         BigDecimal price = new BigDecimal(cost);
         Product product = new Product(name, price);
         return product;

@@ -11,7 +11,7 @@ public class Product {
 
     public Product(String name, BigDecimal price) {
         this.name = name;
-        this.price = price;
+        setPrice(price);
     }
 
     public String getName() {
@@ -27,6 +27,10 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) {
+        if (price.compareTo(BigDecimal.ZERO) < 0){
+            this.price = BigDecimal.ZERO;
+            return;
+        }
         this.price = price;
     }
 

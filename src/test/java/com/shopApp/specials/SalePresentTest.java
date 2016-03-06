@@ -26,7 +26,6 @@ public class SalePresentTest extends SpecialTest {
     @Test
     public void testTakeParticipationInSale() {
         sale = new SalePresent(saleProducts, createPresent());
-        shoppingCart = new ShoppingCart(selectedProducts);
         shoppingCart.setSale(sale);
         shoppingCart.acceptSale();
 

@@ -21,7 +21,6 @@ public class SaleDiscountTest extends SpecialTest {
     @Test
     public void testProductCostAfterDiscount() {
         sale = new SaleDiscount(saleProducts);
-        shoppingCart = new ShoppingCart(selectedProducts);
         shoppingCart.setSale(sale);
 
 

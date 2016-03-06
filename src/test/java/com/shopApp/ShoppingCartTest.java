@@ -22,16 +22,10 @@ public class ShoppingCartTest {
 
     private ShoppingCart shoppingCart;
 
-
-    private List<Product> getProductSet() {
-        ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
-        List<Product> products = shoppingCartFactory.getProductsSet();
-        return products;
-    }
-
     @Before
     public void createShoppingCart() {
-        shoppingCart = new ShoppingCart(getProductSet());
+        ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
+        shoppingCart = shoppingCartFactory.getShoppingCart();
     }
 
 

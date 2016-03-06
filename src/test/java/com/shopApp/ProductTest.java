@@ -15,7 +15,7 @@ public class ProductTest {
     private Product product;
 
     @Before
-    private void createProduct() {
+    public void createProduct() {
         BigDecimal price = new BigDecimal(50);
         product = new Product("ball for child", price);
     }

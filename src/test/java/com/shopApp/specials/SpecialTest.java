@@ -25,7 +25,8 @@ public class SpecialTest {
 
     public SpecialTest() {
         ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
-        selectedProducts = shoppingCartFactory.getProductsSet();
+        shoppingCart = shoppingCartFactory.getShoppingCart();
+
         saleProducts = getSaleProducts();
     }
 }
