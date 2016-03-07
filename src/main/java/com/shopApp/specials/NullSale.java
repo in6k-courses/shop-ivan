@@ -8,6 +8,6 @@ import com.shopApp.ShoppingCart;
 public class NullSale implements Sale {
 
     public void acceptSaleFor(ShoppingCart shoppingCart) {
-
+        return;
     }
 }

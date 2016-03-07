@@ -21,6 +21,7 @@ public class InvariableDiscountTest {
         BigDecimal discount = new BigDecimal(DISCOUNT_VALUE);
 
         BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(1000)};
+
         for(int i = 0; i < moneyValues.length; i++) {
             assertThat(fixedDiscount.calculateDiscount(moneyValues[i]), is(discount));
         }

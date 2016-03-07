@@ -28,14 +28,12 @@ public class SaleDiscount implements Sale {
     }
 
     private void applyDiscount(List<Product> cartProducts) {
-        for(Product product : cartProducts) {
-            if(isSaleProduct(product)) {
+        for (Product product : cartProducts) {
+            if (isSaleProduct(product)) {
                 makeDiscountFor(product);
             }
         }
     }
-
-
 
     private void makeDiscountFor(Product product) {
         BigDecimal productPrice = product.getPrice();

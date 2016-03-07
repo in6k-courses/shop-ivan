@@ -40,6 +40,15 @@ public abstract class Printer {
         printFooter();
     };
 
+    private void printCartProducts(List<Product> products) {
+        printStream.println(wrapper("Shooping Cart has:"));
+        printDivideLine();
+        for(Product product : products) {
+            printStream.print(wrapper(product.getName()));
+            printStream.print(wrapper(product.getPrice().toString()) + "\n");
+        }
+    }
+
     private void printFooter() {
         printStream.println(getSumLine());
         printStream.println(getDiscountSize());
@@ -64,14 +73,6 @@ public abstract class Printer {
         return title + value;
     }
 
-    private void printCartProducts(List<Product> products) {
-        printStream.println(wrapper("Shooping Cart has:"));
-        printDivideLine();
-        for(Product product : products) {
-            printStream.print(wrapper(product.getName()));
-            printStream.print(wrapper(product.getPrice().toString()) + "\n");
-        }
-    }
 
 
 }

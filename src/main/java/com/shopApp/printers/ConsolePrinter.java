@@ -23,8 +23,8 @@ public class ConsolePrinter extends Printer {
 
     public void printDivideLine() {
         String divideSign = "=";
-        String divideLine =  "";
-        for(int i = 0; i < DIVIDER_LENGTH; i++) {
+        String divideLine = "";
+        for (int i = 0; i < DIVIDER_LENGTH; i++) {
             divideLine += divideSign;
         }
         printStream.println(divideLine);

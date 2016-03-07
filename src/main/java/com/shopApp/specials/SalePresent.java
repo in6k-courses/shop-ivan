@@ -26,8 +26,8 @@ public class SalePresent implements Sale {
     }
 
     private void addPresentTo(ShoppingCart shoppingCart) {
-        for(Product product : shoppingCart.getSelectedProducts()) {
-            if(isSaleProduct(product)) {
+        for (Product product : shoppingCart.getSelectedProducts()) {
+            if (isSaleProduct(product)) {
                 shoppingCart.addProduct(present);
                 return;
             }
