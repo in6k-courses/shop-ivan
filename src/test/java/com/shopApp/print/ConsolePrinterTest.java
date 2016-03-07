@@ -68,7 +68,7 @@ public class ConsolePrinterTest {
 
     private String getProductList() {
         String productList = "";
-        for(Product product : shoppingCart.getSelectedProducts()) {
+        for (Product product : shoppingCart.getSelectedProducts()) {
             productList += wrapper(product.getName()) + wrapper("" + product.getPrice()) + "\n";
         }
         return productList;
@@ -95,13 +95,5 @@ public class ConsolePrinterTest {
         }
         return divideLine;
     }
-
-//
-//    @Test
-//    public void err() {
-//        System.err.print("hello again");
-//        assertEquals("hello again", errContent.toString());
-//    }
-
 
 }

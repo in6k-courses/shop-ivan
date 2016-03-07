@@ -30,7 +30,7 @@ public class VariableDiscountTest {
         BigDecimal[] discountSize = {new BigDecimal(3), new BigDecimal(25), new BigDecimal(30), new BigDecimal(70),
                 new BigDecimal(84)};
 
-        for(int i = 0; i < discountSize.length; i++) {
+        for (int i = 0; i < discountSize.length; i++) {
             assertThat(variableDiscount.calculateDiscount(moneyValues[i]), is(discountSize[i]));
         }
     }

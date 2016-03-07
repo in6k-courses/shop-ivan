@@ -32,8 +32,8 @@ public class SaleDiscountTest extends SpecialTest {
     }
 
     private Product findProductByName(String name, List<Product> products) {
-        for(Product product : products) {
-            if(product.getName() == name) return product;
+        for (Product product : products) {
+            if (product.getName() == name) return product;
         }
         return null;
     }
