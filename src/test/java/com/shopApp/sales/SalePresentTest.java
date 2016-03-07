@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 
-/**
- * Created by employee on 3/4/16.
- */
 public class SalePresentTest extends SpecialTest {
 
     private Product present;

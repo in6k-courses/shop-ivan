@@ -4,9 +4,6 @@ import com.shopApp.ShoppingCart;
 
 import java.io.PrintStream;
 
-/**
- * Created by ivan on 04.03.16.
- */
 public class ConsolePrinter extends Printer {
 
     private static final String NAME_FORMAT = "%-25s";

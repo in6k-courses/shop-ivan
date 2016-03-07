@@ -9,14 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-
-/**
- * Created by employee on 3/3/16.
- */
 
 public class ShoppingCartTest {
 

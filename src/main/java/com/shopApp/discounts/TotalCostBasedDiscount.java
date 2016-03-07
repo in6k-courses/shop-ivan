@@ -2,9 +2,6 @@ package com.shopApp.discounts;
 
 import java.math.BigDecimal;
 
-/**
- * Created by employee on 3/3/16.
- */
 public class TotalCostBasedDiscount implements Discount {
 
     private final int SMALL_MONEY_AMOUNT_BORDER = 300;

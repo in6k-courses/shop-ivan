@@ -2,9 +2,6 @@ package com.shopApp.discounts;
 
 import java.math.BigDecimal;
 
-/**
- * Created by employee on 3/3/16.
- */
 public class CouponDiscount implements Discount {
 
     private static final int DISCOUNT_VALUE = 10;

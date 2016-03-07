@@ -2,20 +2,17 @@ package com.shopApp;
 
 import java.math.BigDecimal;
 
-/**
- * Created by employee on 3/3/16.
- */
 public class Product {
-    private String name;
+    private String title;
     private BigDecimal price;
 
-    public Product(String name, BigDecimal price) {
-        this.name = name;
+    public Product(String title, BigDecimal price) {
+        this.title = title;
         setPrice(price);
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public BigDecimal getPrice() {
@@ -37,14 +34,14 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (!name.equals(product.name)) return false;
+        if (!title.equals(product.title)) return false;
         return price.equals(product.price);
 
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
+        int result = title.hashCode();
         result = 31 * result + price.hashCode();
         return result;
     }

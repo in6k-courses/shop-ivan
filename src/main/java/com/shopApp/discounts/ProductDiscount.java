@@ -2,9 +2,6 @@ package com.shopApp.discounts;
 
 import java.math.BigDecimal;
 
-/**
- * Created by employee on 3/4/16.
- */
 public class ProductDiscount implements Discount {
 
     private static final int DISCOUNT_PERCENT = 50;

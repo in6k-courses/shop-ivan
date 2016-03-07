@@ -7,9 +7,6 @@ import com.shopApp.ShoppingCart;
 import java.io.PrintStream;
 import java.util.List;
 
-/**
- * Created by employee on 3/4/16.
- */
 public abstract class Printer {
 
     protected PrintStream printStream;
@@ -44,7 +41,7 @@ public abstract class Printer {
         printStream.println(wrapper("Shopping Cart has:"));
         printDivideLine();
         for(Product product : products) {
-            printStream.print(wrapper(product.getName()));
+            printStream.print(wrapper(product.getTitle()));
             printStream.print(wrapper(product.getPrice().toString()) + "\n");
         }
     }

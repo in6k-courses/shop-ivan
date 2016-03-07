@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-/**
- * Created by employee on 3/3/16.
- */
 public class TotalCostBasedDiscountTest {
 
     private int ONE_HUNDRED_PERCENT = 100;

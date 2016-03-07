@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by employee on 3/7/16.
- */
 public class ShoppingCartImpl implements ShoppingCart {
     private Discount discount;
     private Sale sale;

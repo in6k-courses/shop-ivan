@@ -9,9 +9,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by employee on 3/4/16.
- */
 public class SaleDiscount implements Sale {
 
     private List<Product> saleProducts = new ArrayList<Product>();

@@ -15,10 +15,6 @@ import java.io.PrintStream;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-/**
- * Created by employee on 3/4/16.
- */
-
 public class ConsolePrinterTest {
 
     private static final String NAME_FORMAT = "%-25s";
@@ -75,7 +71,7 @@ public class ConsolePrinterTest {
     private String getProductList() {
         String productList = "";
         for (Product product : shoppingCart.getSelectedProducts()) {
-            productList += wrapper(product.getName()) + wrapper("" + product.getPrice()) + "\n";
+            productList += wrapper(product.getTitle()) + wrapper("" + product.getPrice()) + "\n";
         }
         return productList;
     }

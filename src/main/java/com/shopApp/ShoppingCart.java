@@ -3,9 +3,6 @@ package com.shopApp;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Created by employee on 3/3/16.
- */
 public interface ShoppingCart {
 
     void addProduct(Product product);

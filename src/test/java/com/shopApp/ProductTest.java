@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-/**
- * Created by ivan on 06.03.16.
- */
 public class ProductTest {
     private Product product;
 
@@ -22,7 +19,7 @@ public class ProductTest {
 
     @Test
     public void testProductName() {
-        assertThat(product.getName(), is("ball for child"));
+        assertThat(product.getTitle(), is("ball for child"));
     }
 
     @Test

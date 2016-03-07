@@ -8,7 +8,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsCollectionContaining.hasItems;
 
 public class SaleDiscountTest extends SpecialTest {
 
@@ -27,7 +26,7 @@ public class SaleDiscountTest extends SpecialTest {
 
     private Product findProductByName(String name, List<Product> products) {
         for (Product product : products) {
-            if (product.getName() == name) return product;
+            if (product.getTitle() == name) return product;
         }
         return null;
     }
