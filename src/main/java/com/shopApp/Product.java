@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 public class Product {
     private String title;
     private BigDecimal price;
+    private BigDecimal discount;
 
     public Product(String title, BigDecimal price) {
         this.title = title;
+        this.discount = BigDecimal.ZERO;
         setPrice(price);
     }
 
@@ -19,12 +21,24 @@ public class Product {
         return price;
     }
 
+    public BigDecimal getPriceWithDiscount() {
+        return price.subtract(discount);
+    }
+
     public void setPrice(BigDecimal price) {
         if (price.compareTo(BigDecimal.ZERO) < 0){
             this.price = BigDecimal.ZERO;
             return;
         }
         this.price = price;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
     @Override

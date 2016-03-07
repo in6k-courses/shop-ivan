@@ -1,7 +1,6 @@
 package com.shopApp;
 
 import com.shopApp.discounts.Discount;
-import com.shopApp.discounts.NoDiscount;
 import com.shopApp.sales.Sale;
 
 import java.math.BigDecimal;
@@ -14,7 +13,7 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     private List<Product> selectedProducts;
 
-    private BigDecimal fullPrice = BigDecimal.ZERO;
+    private BigDecimal originalPrice = BigDecimal.ZERO;
     private BigDecimal discountAmount = BigDecimal.ZERO;
 
 
@@ -25,17 +24,15 @@ public class ShoppingCartImpl implements ShoppingCart {
     }
 
     public void applyDiscount() {
-        discountAmount = discount.calculateDiscount(fullPrice);
-        calculateCost();
+        discountAmount = discount.calculateDiscount(originalPrice);
     }
 
     public void applySale() {
         sale.applySaleFor(this);
-        calculateCost();
     }
 
     public BigDecimal getOriginalCost() {
-        return fullPrice;
+        return originalPrice;
     }
 
     public BigDecimal getDiscountAmount() {
@@ -47,12 +44,7 @@ public class ShoppingCartImpl implements ShoppingCart {
     }
 
     public BigDecimal getFinalCost() {
-        return fullPrice.subtract(discountAmount);
-    }
-
-    public void setSelectedProducts(List<Product> selectedProducts) {
-        this.selectedProducts = selectedProducts;
-        calculateCost();
+        return originalPrice.subtract(discountAmount);
     }
 
     public Discount getDiscount() {
@@ -61,33 +53,27 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     public void addProduct(Product product) {
         selectedProducts.add(product);
-        calculateCost();
     }
 
     public void addProducts(List<Product> products) {
         selectedProducts.addAll(products);
-
-        calculateCost();
     }
 
     private void calculateCost() {
-        fullPrice = sumOfProductPrices();
-        if(isDiscountExist()) {
-            discountAmount = discount.calculateDiscount(fullPrice);
-        }
+        originalPrice = updateOriginalCost();
+        discountAmount = discount.calculateDiscount(originalPrice);
     }
 
-    private boolean isDiscountExist() {
-        return !(discount instanceof NoDiscount);
+    private boolean isDiscount() {
+        return !(discount == null);
     }
 
-    private BigDecimal sumOfProductPrices() {
+    private BigDecimal updateOriginalCost() {
         BigDecimal sum = BigDecimal.ZERO;
 
         for(Product product : selectedProducts) {
-            sum = sum.add(product.getPrice());
+            sum = sum.add(product.getPriceWithDiscount());
         }
-
         return sum;
     }
 }

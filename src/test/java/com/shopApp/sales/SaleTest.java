@@ -3,12 +3,14 @@ package com.shopApp.sales;
 import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
 import com.shopApp.ShoppingCartFactory;
+import com.shopApp.ShoppingCartImpl;
+import com.shopApp.discounts.NoDiscount;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialTest {
+public class SaleTest {
     protected Sale sale;
     protected ShoppingCart shoppingCart;
     protected List<Product> selectedProducts = new ArrayList<Product>();
@@ -20,9 +22,8 @@ public class SpecialTest {
         return saleProducts;
     }
 
-    public SpecialTest() {
-        ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
-        shoppingCart = shoppingCartFactory.getShoppingCart();
+    public SaleTest() {
+        shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, sale);
 
         saleProducts = getSaleProducts();
     }

@@ -18,11 +18,11 @@ public class TotalCostBasedDiscount implements Discount {
         discountPercent = ZERO_DISCOUNT_PERCENT;
     }
 
-    public BigDecimal calculateDiscount(BigDecimal price) {
-        discountPercent = getDiscountPercent(price);
+    public BigDecimal calculateDiscount(BigDecimal cost) {
+        discountPercent = getDiscountPercent(cost);
         BigDecimal percent = new BigDecimal(discountPercent);
         BigDecimal oneHundredPercent = new BigDecimal(ONE_HUNDRED_PERCENT);
-        BigDecimal discount = (price.multiply(percent)).divide(oneHundredPercent);
+        BigDecimal discount = (cost.multiply(percent)).divide(oneHundredPercent);
         return discount;
     }
 

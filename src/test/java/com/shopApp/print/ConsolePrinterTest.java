@@ -27,7 +27,7 @@ public class ConsolePrinterTest {
 
     private void setPrinterObject() {
         ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
-        shoppingCart = shoppingCartFactory.getShoppingCart();
+        shoppingCart = shoppingCartFactory.getFilledShoppingCart();
         printer = new ConsolePrinter(shoppingCart);
     }
 

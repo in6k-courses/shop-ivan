@@ -9,24 +9,13 @@ import java.util.List;
 
 public class ShoppingCartFactory {
 
-    private List<Product> products;
-    private ShoppingCart shoppingCart;
+    private static ShoppingCart shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, NoSale.NoSale);;
 
-    public ShoppingCartFactory() {
-        products = createProductsSet();
-        shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, NoSale.NoSale);
-        shoppingCart.addProducts(products);
-    }
-
-    public List<Product> getProductsSet() {
-        return products;
-    }
-
-    public ShoppingCart getShoppingCart() {
+    public ShoppingCart getFilledShoppingCart() {
         return shoppingCart;
     }
 
-    private List<Product> createProductsSet() {
+    public static List<Product> getProductsSet() {
         List<Product> products = new ArrayList<Product>();
 
         Product soccerBall = createProduct("soccer ball", 1100);
@@ -44,20 +33,14 @@ public class ShoppingCartFactory {
         return products;
     }
 
-    private Product createProduct(String name, double cost) {
-        BigDecimal price = new BigDecimal(cost);
-        Product product = new Product(name, price);
-        return product;
-    }
-
-    public List<Product> getSaleProduct() {
+    public static List<Product> getSaleProducts() {
         List<Product> saleProducts = new ArrayList<Product>();
         saleProducts.add(createProduct("soccer ball", 1100));
         saleProducts.add(createProduct("basketball ball", 250));
         return saleProducts;
     }
 
-    public Product createProduct(String name, int price) {
+    public static Product createProduct(String name, int price) {
         return new Product(name, new BigDecimal(price));
     }
 

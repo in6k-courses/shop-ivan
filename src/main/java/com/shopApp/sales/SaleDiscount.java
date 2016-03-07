@@ -32,8 +32,8 @@ public class SaleDiscount implements Sale {
     }
 
     private void makeDiscountFor(Product product) {
-        BigDecimal productPrice = product.getPrice();
-        BigDecimal salePrice = productDiscount.calculateDiscount(productPrice);
+        BigDecimal price = product.getPrice();
+        BigDecimal salePrice = productDiscount.calculateDiscount(price);
         product.setPrice(salePrice);
     }
 
