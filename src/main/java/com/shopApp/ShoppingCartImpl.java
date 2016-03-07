@@ -21,14 +21,17 @@ public class ShoppingCartImpl implements ShoppingCart {
         this.discount = discount;
         this.sale = sale;
         this.selectedProducts = new ArrayList<Product>();
+        calculateCost();
     }
 
     public void applyDiscount() {
         discountAmount = discount.calculateDiscount(originalPrice);
+        calculateCost();
     }
 
     public void applySale() {
         sale.applySaleFor(this);
+        calculateCost();
     }
 
     public BigDecimal getOriginalCost() {
@@ -53,10 +56,12 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     public void addProduct(Product product) {
         selectedProducts.add(product);
+        calculateCost();
     }
 
     public void addProducts(List<Product> products) {
         selectedProducts.addAll(products);
+        calculateCost();
     }
 
     private void calculateCost() {
