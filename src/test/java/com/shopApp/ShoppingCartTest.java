@@ -4,6 +4,8 @@ package com.shopApp;
 import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.InvariableDiscount;
 import com.shopApp.discounts.VariableDiscount;
+import com.shopApp.specials.Sale;
+import com.shopApp.specials.SaleDiscount;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -51,7 +53,7 @@ public class ShoppingCartTest {
     private void performDiscount(Discount discountType) {
         Discount discount = discountType;
         shoppingCart.setDiscount(discount);
-        shoppingCart.executeDiscount();
+        shoppingCart.acceptDiscount();
     }
 
     @Test
@@ -69,6 +71,30 @@ public class ShoppingCartTest {
         BigDecimal discountSize = new BigDecimal("123.9");
 
         assertThat(shoppingCart.getDiscountSize(), is(discountSize));
+    }
+
+    @Test
+    public void testFullPriceWithSaleDiscount() {
+        Sale sale = new SaleDiscount(getSaleProduct());
+        shoppingCart.setSale(sale);
+        shoppingCart.acceptSale();
+        BigDecimal fullPrice = new BigDecimal(1095);
+
+        assertThat(shoppingCart.getFullPrice(), is(fullPrice));
+    }
+
+    private List<Product> getSaleProduct() {
+
+        List<Product> saleProducts = new ArrayList<>();
+        saleProducts.add(createProduct("soccer ball", 1100));
+        saleProducts.add(createProduct("basketball ball", 250));
+        return saleProducts;
+    }
+
+    private Product createProduct(String productName, int productPrice) {
+        String name = productName;
+        BigDecimal price = new BigDecimal(productPrice);
+        return new Product(name, price);
     }
 
 

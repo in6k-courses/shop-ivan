@@ -5,7 +5,6 @@ import com.shopApp.discounts.VariableDiscount;
 import com.shopApp.printers.ConsolePrinter;
 import com.shopApp.printers.Printer;
 import com.shopApp.specials.SaleDiscount;
-import com.shopApp.specials.SalePresent;
 import com.shopApp.specials.Sale;
 
 import java.math.BigDecimal;
@@ -49,13 +48,13 @@ public class Main {
 
         Discount variableDiscount = new VariableDiscount();
 
-        Sale salePresent = new SalePresent(saleProducts, prize);
+//        Sale salePresent = new SalePresent(saleProducts, prize);
         Sale saleDiscount = new SaleDiscount(saleProducts);
 
         ShoppingCart shoppingCart = new ShoppingCart(selectedProducts);
         shoppingCart.setDiscount(variableDiscount);
-        shoppingCart.setSale(salePresent);
-        shoppingCart.executeDiscount();
+        shoppingCart.setSale(saleDiscount);
+        shoppingCart.acceptDiscount();
         shoppingCart.acceptSale();
 
 

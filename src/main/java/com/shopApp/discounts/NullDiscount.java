@@ -1,5 +1,7 @@
 package com.shopApp.discounts;
 
+import org.hamcrest.Matcher;
+
 import java.math.BigDecimal;
 
 /**

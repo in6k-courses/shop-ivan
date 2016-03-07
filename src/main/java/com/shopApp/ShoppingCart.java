@@ -30,7 +30,7 @@ public class ShoppingCart {
         changePrices();
     }
 
-    public void executeDiscount() {
+    public void acceptDiscount() {
         discountSize = discount.calculateDiscount(fullPrice);
         changePrices();
     }

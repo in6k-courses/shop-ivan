@@ -1,5 +1,6 @@
 package com.shopApp.discounts;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -12,26 +13,47 @@ import static org.hamcrest.core.Is.is;
  * Created by employee on 3/3/16.
  */
 public class VariableDiscountTest {
+    private Discount variableDiscount;
 
-    @Ignore
-    @Test
-    public void testCalculateDiscount() {
-        Discount discount = new VariableDiscount();
-        assertThat(discount.calculateDiscount(new BigDecimal(1000)), is(new BigDecimal(70)));
+    @Before
+    public void initDiscount() {
+        variableDiscount = new VariableDiscount();
     }
 
     @Test
-    public void testEndPriceWithDifferentAmountOfMoney() {
+    public void testDiscountSizeWithDifferentAmountOfMoney() {
         BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(600),
                 new BigDecimal(1000), new BigDecimal(1200)};
 
         BigDecimal[] discountSize = {new BigDecimal(3), new BigDecimal(25), new BigDecimal(30), new BigDecimal(70),
                 new BigDecimal(84)};
 
-        Discount changableDiscount = new VariableDiscount();
         for(int i = 0; i < discountSize.length; i++) {
-            assertThat(changableDiscount.calculateDiscount(moneyValues[i]), is(discountSize[i]));
+            assertThat(variableDiscount.calculateDiscount(moneyValues[i]), is(discountSize[i]));
         }
+    }
+
+    @Test
+    public void testSmallDiscount() {
+        Discount discount = new VariableDiscount();
+        assertThat(discount.calculateDiscount(new BigDecimal(300)), is(new BigDecimal(9)));
+    }
+
+    @Ignore
+    @Test
+    public void testMiddleDiscount() {
+        BigDecimal percent = new BigDecimal("0.03");
+        BigDecimal price = new BigDecimal(300);
+
+        Discount discount = new VariableDiscount();
+        assertThat(discount.calculateDiscount(new BigDecimal(9)), is(price.multiply(percent)));
+    }
+
+    @Test
+    public void testDiscountSizeWithNegativeAmountOfMoney() {
+        BigDecimal negativePrice = new BigDecimal(-500);
+
+        assertThat(variableDiscount.calculateDiscount(negativePrice), is(BigDecimal.ZERO));
     }
 
 
