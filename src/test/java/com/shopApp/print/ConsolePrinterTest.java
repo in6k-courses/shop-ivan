@@ -29,7 +29,7 @@ public class ConsolePrinterTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    private void setObjects() {
+    private void setPrinterObject() {
         ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
         shoppingCart = shoppingCartFactory.getShoppingCart();
         printer = new ConsolePrinter(shoppingCart);
@@ -40,9 +40,9 @@ public class ConsolePrinterTest {
     }
 
     @Before
-    public void setUpStreamsAndObjectsInialization() {
+    public void setObjects() {
         setUpSteams();
-        setObjects();
+        setPrinterObject();
     }
 
     @After
@@ -82,9 +82,9 @@ public class ConsolePrinterTest {
 
     private String getPricesList() {
         String prices = ""
-                + wrapper("Sum:") + wrapper("" + shoppingCart.getFullPrice()) + "\n"
-                + wrapper("Discount:") + wrapper("" + shoppingCart.getDiscountSize()) + "\n"
-                + wrapper("To pay: ") + wrapper("" + shoppingCart.getDiscountPrice()) + "\n";
+                + wrapper("Sum:") + wrapper("" + shoppingCart.getOriginalCost()) + "\n"
+                + wrapper("Discount:") + wrapper("" + shoppingCart.getDiscountAmount()) + "\n"
+                + wrapper("To pay: ") + wrapper("" + shoppingCart.getFinalCost()) + "\n";
 
         return prices;
     }

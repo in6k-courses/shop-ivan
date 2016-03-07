@@ -7,10 +7,10 @@ import java.math.BigDecimal;
  */
 public class ProductDiscount implements Discount {
 
-    private static final int DISCOUNT_PROCENT = 50;
+    private static final int DISCOUNT_PERCENT = 50;
 
     public BigDecimal calculateDiscount(BigDecimal price) {
-        BigDecimal percent = new BigDecimal(DISCOUNT_PROCENT);
+        BigDecimal percent = new BigDecimal(DISCOUNT_PERCENT);
         BigDecimal oneHundredPercent = new BigDecimal(ONE_HUNDRED_PERCENT);
         BigDecimal discount = (price.multiply(percent)).divide(oneHundredPercent);
         return discount;

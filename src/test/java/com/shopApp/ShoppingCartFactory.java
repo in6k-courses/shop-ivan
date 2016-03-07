@@ -1,5 +1,8 @@
 package com.shopApp;
 
+import com.shopApp.discounts.NoDiscount;
+import com.shopApp.sales.NoSale;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,8 @@ public class ShoppingCartFactory {
 
     public ShoppingCartFactory() {
         products = createProductsSet();
-        shoppingCart = new ShoppingCart(products);
+        shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, NoSale.NoSale);
+        shoppingCart.addProducts(products);
     }
 
     public List<Product> getProductsSet() {
@@ -47,6 +51,17 @@ public class ShoppingCartFactory {
         BigDecimal price = new BigDecimal(cost);
         Product product = new Product(name, price);
         return product;
+    }
+
+    public List<Product> getSaleProduct() {
+        List<Product> saleProducts = new ArrayList<Product>();
+        saleProducts.add(createProduct("soccer ball", 1100));
+        saleProducts.add(createProduct("basketball ball", 250));
+        return saleProducts;
+    }
+
+    public Product createProduct(String name, int price) {
+        return new Product(name, new BigDecimal(price));
     }
 
 

@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 /**
  * Created by employee on 3/3/16.
  */
-public class VariableDiscount implements Discount {
+public class TotalCostBasedDiscount implements Discount {
 
-    private final int SMALL_AMOUNT_OF_MONEY = 300;
-    private final int MIDDLE_AMOUNT_OF_MONEY = 600;
+    private final int SMALL_MONEY_AMOUNT_BORDER = 300;
+    private final int MIDDLE_MONEY_AMOUNT_BORDER = 600;
 
     private final int ZERO_DISCOUNT_PERCENT = 0;
     private final int SMALL_DISCOUNT_PERCENT = 3;
@@ -17,7 +17,7 @@ public class VariableDiscount implements Discount {
 
     private int discountPercent;
 
-    public VariableDiscount() {
+    public TotalCostBasedDiscount() {
         discountPercent = ZERO_DISCOUNT_PERCENT;
     }
 
@@ -46,7 +46,7 @@ public class VariableDiscount implements Discount {
 
 
     private boolean isSmallMoney(BigDecimal amount) {
-        BigDecimal smallMoney = new BigDecimal(SMALL_AMOUNT_OF_MONEY);
+        BigDecimal smallMoney = new BigDecimal(SMALL_MONEY_AMOUNT_BORDER);
         if(amount.compareTo(smallMoney) <= 0) {
             return true;
         }
@@ -54,7 +54,7 @@ public class VariableDiscount implements Discount {
     }
 
     private boolean isMiddleMoney(BigDecimal amount) {
-        BigDecimal middleMoney = new BigDecimal(MIDDLE_AMOUNT_OF_MONEY);
+        BigDecimal middleMoney = new BigDecimal(MIDDLE_MONEY_AMOUNT_BORDER);
         if(amount.compareTo(middleMoney) <= 0) {
             return true;
         }

@@ -1,8 +1,6 @@
-package com.shopApp.specials;
+package com.shopApp.sales;
 
 import com.shopApp.Product;
-import com.shopApp.ShoppingCart;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -26,8 +24,7 @@ public class SalePresentTest extends SpecialTest {
     @Test
     public void testTakeParticipationInSale() {
         sale = new SalePresent(saleProducts, createPresent());
-        shoppingCart.setSale(sale);
-        shoppingCart.acceptSale();
+        shoppingCart.applySale();
 
         assertThat(shoppingCart.getSelectedProducts(), hasItems(present));
     }

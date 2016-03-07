@@ -1,4 +1,4 @@
-package com.shopApp.specials;
+package com.shopApp.sales;
 
 import com.shopApp.ShoppingCart;
 
@@ -7,6 +7,6 @@ import com.shopApp.ShoppingCart;
  */
 public interface Sale {
 
-    void acceptSaleFor(ShoppingCart shoppingCart);
+    void applySaleFor(ShoppingCart shoppingCart);
 
 }

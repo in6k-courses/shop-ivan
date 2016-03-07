@@ -1,17 +1,15 @@
 package com.shopApp;
 
 
-import com.shopApp.discounts.Discount;
-import com.shopApp.discounts.InvariableDiscount;
-import com.shopApp.discounts.VariableDiscount;
-import com.shopApp.specials.Sale;
-import com.shopApp.specials.SaleDiscount;
+import com.shopApp.discounts.NoDiscount;
+import com.shopApp.sales.NoSale;
+import com.shopApp.sales.Sale;
+import com.shopApp.sales.SaleDiscount;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -23,79 +21,47 @@ import static org.hamcrest.core.Is.is;
 public class ShoppingCartTest {
 
     private ShoppingCart shoppingCart;
+    private ShoppingCartFactory shoppingCartFactory;
 
     @Before
     public void createShoppingCart() {
         ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
-        shoppingCart = shoppingCartFactory.getShoppingCart();
+        shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, NoSale.NoSale);
+        shoppingCart.addProducts(shoppingCartFactory.getProductsSet());
     }
-
 
     @Test
     public void testFullPriceWithoutProductsList() {
-        List<Product> emptyProductList = new ArrayList<Product>();
-        shoppingCart.setSelectedProducts(emptyProductList);
-        BigDecimal nullPrice = BigDecimal.ZERO;
-
-        assertThat(shoppingCart.getFullPrice(), is(nullPrice));
+        assertThat(shoppingCart.getOriginalCost(), is(BigDecimal.ZERO));
     }
 
     @Test
     public void testDiscountSizeWithEmptyProductsList() {
-        List<Product> emptyProductList = new ArrayList<Product>();
-        shoppingCart = new ShoppingCart(emptyProductList);
-        BigDecimal nullPrice = BigDecimal.ZERO;
-
-        assertThat(shoppingCart.getDiscountSize(), is(nullPrice));
-    }
-
-
-    private void performDiscount(Discount discountType) {
-        Discount discount = discountType;
-        shoppingCart.setDiscount(discount);
-        shoppingCart.acceptDiscount();
+        assertThat(shoppingCart.getDiscountAmount(), is(BigDecimal.ZERO));
     }
 
     @Test
     public void testSetDiscountPriceUsingInvariableDiscount() {
-        performDiscount(new InvariableDiscount());
+        shoppingCart.applyDiscount();
         BigDecimal discountSize = new BigDecimal(10);
 
-        assertThat(shoppingCart.getDiscountSize(), is(discountSize));
+        assertThat(shoppingCart.getDiscountAmount(), is(discountSize));
     }
-
 
     @Test
     public void testSetDiscountSizeWithVariableDiscount() {
-        performDiscount(new VariableDiscount());
-        BigDecimal discountSize = new BigDecimal("123.9");
+        shoppingCart.applyDiscount();
+        BigDecimal discountAmount = new BigDecimal("123.9");
 
-        assertThat(shoppingCart.getDiscountSize(), is(discountSize));
+        assertThat(shoppingCart.getDiscountAmount(), is(discountAmount));
     }
 
     @Test
     public void testFullPriceWithSaleDiscount() {
-        Sale sale = new SaleDiscount(getSaleProduct());
-        shoppingCart.setSale(sale);
-        shoppingCart.acceptSale();
-        BigDecimal fullPrice = new BigDecimal(1095);
+        Sale sale = new SaleDiscount(shoppingCartFactory.getSaleProduct());
+        shoppingCart.applySale();
 
-        assertThat(shoppingCart.getFullPrice(), is(fullPrice));
+        assertThat(shoppingCart.getOriginalCost(), is(new BigDecimal(1095)));
     }
-
-    private List<Product> getSaleProduct() {
-
-        List<Product> saleProducts = new ArrayList<Product>();
-        saleProducts.add(createProduct("soccer ball", 1100));
-        saleProducts.add(createProduct("basketball ball", 250));
-        return saleProducts;
-    }
-
-    private Product createProduct(String productName, int productPrice) {
-        String name = productName;
-        BigDecimal price = new BigDecimal(productPrice);
-        return new Product(name, price);
-    }
-
 
 }

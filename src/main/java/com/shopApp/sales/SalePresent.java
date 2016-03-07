@@ -1,4 +1,4 @@
-package com.shopApp.specials;
+package com.shopApp.sales;
 
 import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
@@ -21,7 +21,7 @@ public class SalePresent implements Sale {
         this.present = makePresent(present);
     }
 
-    public void acceptSaleFor(ShoppingCart shoppingCart) {
+    public void applySaleFor(ShoppingCart shoppingCart) {
         addPresentTo(shoppingCart);
     }
 

@@ -1,7 +1,6 @@
 package com.shopApp.discounts;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -12,14 +11,14 @@ import static org.hamcrest.core.Is.is;
 /**
  * Created by employee on 3/3/16.
  */
-public class VariableDiscountTest {
+public class TotalCostBasedDiscountTest {
 
     private int ONE_HUNDRED_PERCENT = 100;
     private Discount variableDiscount;
 
     @Before
     public void initDiscount() {
-        variableDiscount = new VariableDiscount();
+        variableDiscount = new TotalCostBasedDiscount();
     }
 
     @Test
@@ -36,8 +35,8 @@ public class VariableDiscountTest {
     }
 
     @Test
-    public void testSmallDiscount() {
-        BigDecimal middlePercent = new BigDecimal("3");
+    public void testSmallDiscountCalculation() {
+        BigDecimal middlePercent = new BigDecimal(3);
         BigDecimal price = new BigDecimal(300);
         BigDecimal discountSize = testDiscount(middlePercent, price);
 
@@ -46,8 +45,8 @@ public class VariableDiscountTest {
 
 
     @Test
-    public void testMiddleDiscount() {
-        BigDecimal middlePercent = new BigDecimal("5");
+    public void testMiddleDiscountCalculation() {
+        BigDecimal middlePercent = new BigDecimal(5);
         BigDecimal price = new BigDecimal(500);
         BigDecimal discountSize = testDiscount(middlePercent, price);
 
@@ -55,8 +54,8 @@ public class VariableDiscountTest {
     }
 
     @Test
-    public void testBigDiscount() {
-        BigDecimal middlePercent = new BigDecimal("7");
+    public void testBigDiscountCalculation() {
+        BigDecimal middlePercent = new BigDecimal(7);
         BigDecimal price = new BigDecimal(1000);
         BigDecimal discountSize = testDiscount(middlePercent, price);
 

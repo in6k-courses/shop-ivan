@@ -57,19 +57,19 @@ public abstract class Printer {
 
     private String getSumLine() {
         String title = wrapper("Sum: ");
-        String value = wrapper(shoppingCart.getFullPrice().toString());
+        String value = wrapper(shoppingCart.getOriginalCost().toString());
         return title + value;
     }
 
     private String getDiscountSize() {
         String title = wrapper("Discount: ");
-        String value = wrapper(shoppingCart.getDiscountSize().toString());
+        String value = wrapper(shoppingCart.getDiscountAmount().toString());
         return title + value;
     }
 
     private String getDiscountPrice() {
         String title = wrapper("To pay: ");
-        String value = wrapper(shoppingCart.getDiscountPrice().toString());
+        String value = wrapper(shoppingCart.getFinalCost().toString());
         return title + value;
     }
 

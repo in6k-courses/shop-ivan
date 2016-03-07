@@ -1,4 +1,4 @@
-package com.shopApp.specials;
+package com.shopApp.sales;
 
 import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by employee on 3/4/16.
- */
 public class SpecialTest {
     protected Sale sale;
     protected ShoppingCart shoppingCart;
