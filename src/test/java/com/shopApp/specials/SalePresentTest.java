@@ -29,7 +29,7 @@ public class SalePresentTest extends SpecialTest {
         shoppingCart.setSale(sale);
         shoppingCart.acceptSale();
 
-        assertThat(shoppingCart.getSelectedProducts(), hasItems(new Product("football poster", new BigDecimal(0))));
+        assertThat(shoppingCart.getSelectedProducts(), hasItems(present));
     }
 
 }

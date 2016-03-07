@@ -18,10 +18,6 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -32,10 +28,6 @@ public class Product {
             return;
         }
         this.price = price;
-    }
-
-    public void getDiscount() {
-        return;
     }
 
     @Override

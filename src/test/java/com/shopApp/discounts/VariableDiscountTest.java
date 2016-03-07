@@ -13,6 +13,8 @@ import static org.hamcrest.core.Is.is;
  * Created by employee on 3/3/16.
  */
 public class VariableDiscountTest {
+
+    private int ONE_HUNDRED_PERCENT = 100;
     private Discount variableDiscount;
 
     @Before
@@ -35,18 +37,36 @@ public class VariableDiscountTest {
 
     @Test
     public void testSmallDiscount() {
-        Discount discount = new VariableDiscount();
-        assertThat(discount.calculateDiscount(new BigDecimal(300)), is(new BigDecimal(9)));
+        BigDecimal middlePercent = new BigDecimal("3");
+        BigDecimal price = new BigDecimal(300);
+        BigDecimal discountSize = testDiscount(middlePercent, price);
+
+        assertThat(variableDiscount.calculateDiscount(price), is(discountSize));
     }
 
-    @Ignore
+
     @Test
     public void testMiddleDiscount() {
-        BigDecimal percent = new BigDecimal("0.03");
-        BigDecimal price = new BigDecimal(300);
+        BigDecimal middlePercent = new BigDecimal("5");
+        BigDecimal price = new BigDecimal(500);
+        BigDecimal discountSize = testDiscount(middlePercent, price);
 
-        Discount discount = new VariableDiscount();
-        assertThat(discount.calculateDiscount(new BigDecimal(9)), is(price.multiply(percent)));
+        assertThat(variableDiscount.calculateDiscount(price), is(discountSize));
+    }
+
+    @Test
+    public void testBigDiscount() {
+        BigDecimal middlePercent = new BigDecimal("7");
+        BigDecimal price = new BigDecimal(1000);
+        BigDecimal discountSize = testDiscount(middlePercent, price);
+
+        assertThat(variableDiscount.calculateDiscount(price), is(discountSize));
+    }
+
+    private BigDecimal testDiscount(BigDecimal percent, BigDecimal price) {
+        BigDecimal oneHundred = new BigDecimal(ONE_HUNDRED_PERCENT);
+        BigDecimal discountSize = (price.multiply(percent)).divide(oneHundred);
+        return discountSize;
     }
 
     @Test

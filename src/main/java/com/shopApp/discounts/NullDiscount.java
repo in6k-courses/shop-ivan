@@ -1,7 +1,5 @@
 package com.shopApp.discounts;
 
-import org.hamcrest.Matcher;
-
 import java.math.BigDecimal;
 
 /**
@@ -10,6 +8,6 @@ import java.math.BigDecimal;
 public class NullDiscount implements Discount {
 
     public BigDecimal calculateDiscount(BigDecimal price) {
-        return new BigDecimal(0);
+        return BigDecimal.ZERO;
     }
 }

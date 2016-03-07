@@ -26,7 +26,7 @@ public class ShoppingCartFactory {
     }
 
     private List<Product> createProductsSet() {
-        List<Product> products = new ArrayList<>();
+        List<Product> products = new ArrayList<Product>();
 
         Product soccerBall = createProduct("soccer ball", 1100);
         products.add(soccerBall);

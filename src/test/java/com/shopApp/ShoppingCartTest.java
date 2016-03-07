@@ -85,7 +85,7 @@ public class ShoppingCartTest {
 
     private List<Product> getSaleProduct() {
 
-        List<Product> saleProducts = new ArrayList<>();
+        List<Product> saleProducts = new ArrayList<Product>();
         saleProducts.add(createProduct("soccer ball", 1100));
         saleProducts.add(createProduct("basketball ball", 250));
         return saleProducts;
