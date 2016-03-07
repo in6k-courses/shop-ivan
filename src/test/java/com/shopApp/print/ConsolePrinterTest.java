@@ -29,9 +29,20 @@ public class ConsolePrinterTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    @Before
-    public void setUpStreams() {
+    private void setObjects() {
+        ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
+        shoppingCart = shoppingCartFactory.getShoppingCart();
+        printer = new ConsolePrinter(shoppingCart);
+    }
+
+    private void setUpSteams() {
         System.setOut(new PrintStream(outContent));
+    }
+
+    @Before
+    public void setUpStreamsAndObjectsInialization() {
+        setUpSteams();
+        setObjects();
     }
 
     @After
@@ -40,15 +51,10 @@ public class ConsolePrinterTest {
     }
 
 
-    public void init() {
-        ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
-        shoppingCart = shoppingCartFactory.getShoppingCart();
-        printer = new ConsolePrinter(shoppingCart);
-    }
+
 
     @Test
     public void testPrintCartProducts() {
-        init();
         printer.print();
         assertThat(outContent.toString(), is(getCheck()));
     }
@@ -56,11 +62,11 @@ public class ConsolePrinterTest {
     private String getCheck() {
         String check = ""
                 + "Check" + "\n"
-                + getDivideLine() + "\n"
-                + wrapper("Shooping Cart has:") + "\n"
-                + getDivideLine() + "\n"
+                + getDivisionLine() + "\n"
+                + wrapper("Shopping Cart has:") + "\n"
+                + getDivisionLine() + "\n"
                 + getProductList()
-                + getDivideLine() + "\n"
+                + getDivisionLine() + "\n"
                 + getPricesList();
 
         return check;
@@ -87,13 +93,13 @@ public class ConsolePrinterTest {
         return String.format(NAME_FORMAT, line);
     }
 
-    public String getDivideLine() {
-        String divideSign = "=";
-        String divideLine = "";
+    public String getDivisionLine() {
+        String divisionSign = "=";
+        String divisionLine = "";
         for (int i = 0; i < DIVIDER_LENGTH; i++) {
-            divideLine += divideSign;
+            divisionLine += divisionSign;
         }
-        return divideLine;
+        return divisionLine;
     }
 
 }

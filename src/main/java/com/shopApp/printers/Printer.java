@@ -41,7 +41,7 @@ public abstract class Printer {
     };
 
     private void printCartProducts(List<Product> products) {
-        printStream.println(wrapper("Shooping Cart has:"));
+        printStream.println(wrapper("Shopping Cart has:"));
         printDivideLine();
         for(Product product : products) {
             printStream.print(wrapper(product.getName()));
