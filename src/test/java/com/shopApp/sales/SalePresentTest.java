@@ -2,6 +2,7 @@ package com.shopApp.sales;
 
 import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
+import com.shopApp.ShoppingCartFactory;
 import com.shopApp.ShoppingCartImpl;
 import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.NoDiscount;
@@ -26,7 +27,7 @@ public class SalePresentTest extends SaleTest {
     public void testTakeParticipationInSale() {
         sale = new SalePresent(saleProducts, createPresent());
         ShoppingCart shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, sale);
-
+        shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
         shoppingCart.applySale();
 
         assertThat(shoppingCart.getSelectedProducts(), hasItems(present));

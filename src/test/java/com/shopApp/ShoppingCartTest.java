@@ -38,11 +38,11 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void testSetDiscountPriceUsingInvariableDiscount() {
-        Discount discount = new CouponDiscount();
+    public void testSetDiscountPriceUsingCouponDiscount() {
+        BigDecimal discountAmount = new BigDecimal(10);
+        Discount discount = new CouponDiscount(10);
         shoppingCart = new ShoppingCartImpl(discount, NoSale.NoSale);
         shoppingCart.applyDiscount();
-        BigDecimal discountAmount = new BigDecimal(10);
 
         assertThat(shoppingCart.getDiscountAmount(), is(discountAmount));
     }
@@ -51,7 +51,7 @@ public class ShoppingCartTest {
     public void testSetDiscountSizeWithVariableDiscount() {
 
         Discount discount = new TotalCostBasedDiscount();
-        ShoppingCart shoppingCart = new ShoppingCartImpl(discount, NoSale.NoSale);
+        shoppingCart = new ShoppingCartImpl(discount, NoSale.NoSale);
         shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
         shoppingCart.applyDiscount();
 
@@ -64,6 +64,7 @@ public class ShoppingCartTest {
     public void testFinalCostWithSaleDiscount() {
         Sale sale = new SaleDiscount(ShoppingCartFactory.getSaleProducts());
         shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, sale);
+        shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
         shoppingCart.applySale();
 
         assertThat(shoppingCart.getFinalCost(), is(new BigDecimal(1095)));

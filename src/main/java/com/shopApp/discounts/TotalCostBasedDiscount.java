@@ -41,6 +41,11 @@ public class TotalCostBasedDiscount implements Discount {
         return false;
     }
 
+//    private boolean is() {
+//        BigDecimal moneyGroup = new BigDecimal(money);
+//        return false;
+//    }
+
 
     private boolean isSmallMoney(BigDecimal amount) {
         BigDecimal smallMoney = new BigDecimal(SMALL_MONEY_AMOUNT_BORDER);

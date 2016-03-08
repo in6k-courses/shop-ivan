@@ -22,7 +22,7 @@ public class ProductTest {
         assertThat(product.getTitle(), is("ball for child"));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testNegativePriceUsingSetMethod() {
         BigDecimal price = new BigDecimal(-25);
         product.setPrice(price);
@@ -30,7 +30,7 @@ public class ProductTest {
         assertThat(product.getPrice(), is(BigDecimal.ZERO));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testNegativePriceUsingConstructor() {
         BigDecimal price = new BigDecimal(-25);
         Product product = new Product("ball for child", price);

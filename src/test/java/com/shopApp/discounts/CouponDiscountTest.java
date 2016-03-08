@@ -13,7 +13,7 @@ public class CouponDiscountTest {
 
     @Test
     public void testFixedDiscountCalculation() {
-        Discount fixedDiscount = new CouponDiscount();
+        Discount fixedDiscount = new CouponDiscount(DISCOUNT_VALUE);
         BigDecimal discount = new BigDecimal(DISCOUNT_VALUE);
 
         BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(1000)};

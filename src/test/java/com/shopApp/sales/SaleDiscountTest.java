@@ -1,6 +1,10 @@
 package com.shopApp.sales;
 
 import com.shopApp.Product;
+import com.shopApp.ShoppingCart;
+import com.shopApp.ShoppingCartFactory;
+import com.shopApp.ShoppingCartImpl;
+import com.shopApp.discounts.NoDiscount;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -12,18 +16,18 @@ import static org.hamcrest.core.Is.is;
 
 public class SaleDiscountTest extends SaleTest {
 
-    @Ignore
     @Test
     public void testProductCostAfterDiscount() {
         sale = new SaleDiscount(saleProducts);
+        shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, sale);
+        shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
         shoppingCart.applySale();
 
 
         List<Product> cartProducts = shoppingCart.getSelectedProducts();
         Product specialProduct = findProductByName("Goalkeeper's gloves", cartProducts);
 
-        shoppingCart.applySale();
-        assertThat(specialProduct.getPrice(), is(new BigDecimal(150)));
+        assertThat(specialProduct.getPriceWithDiscount(), is(new BigDecimal(150)));
     }
 
     private Product findProductByName(String title, List<Product> products) {

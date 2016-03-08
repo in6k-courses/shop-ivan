@@ -7,29 +7,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SalePresent implements Sale {
-
-    private List<Product> saleProducts = new ArrayList<Product>();
+public class SalePresent extends SaleAbstract {
 
     private Product present;
 
     public SalePresent(List<Product> saleProducts, Product present) {
-        this.saleProducts = saleProducts;
+        super(saleProducts);
         this.present = makePresent(present);
-    }
-
-    public void applySaleFor(ShoppingCart shoppingCart) {
-        addPresentTo(shoppingCart);
-    }
-
-    private void addPresentTo(ShoppingCart shoppingCart) {
-        for (Product product : shoppingCart.getSelectedProducts()) {
-            if (isSaleProduct(product)) {
-                shoppingCart.addProduct(present);
-                return;
-            }
-        }
-
     }
 
     private Product makePresent(Product product) {
@@ -37,7 +21,8 @@ public class SalePresent implements Sale {
         return product;
     }
 
-    private Boolean isSaleProduct(Product product) {
-        return saleProducts.contains(product);
+    @Override
+    protected void makeSalePresent(Product product) {
+
     }
 }

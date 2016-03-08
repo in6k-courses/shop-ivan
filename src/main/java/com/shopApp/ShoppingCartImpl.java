@@ -1,6 +1,7 @@
 package com.shopApp;
 
 import com.shopApp.discounts.Discount;
+import com.shopApp.discounts.NoDiscount;
 import com.shopApp.sales.Sale;
 
 import java.math.BigDecimal;
@@ -32,6 +33,10 @@ public class ShoppingCartImpl implements ShoppingCart {
     public void applySale() {
         sale.applySaleFor(this);
         calculateCost();
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 
     public BigDecimal getOriginalCost() {
@@ -66,7 +71,8 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     private void calculateCost() {
         originalPrice = updateOriginalCost();
-        discountAmount = discount.calculateDiscount(originalPrice);
+        if (!discount.equals(NoDiscount.NoDiscount))
+            discountAmount = discount.calculateDiscount(originalPrice);
     }
 
     private boolean isDiscount() {

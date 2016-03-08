@@ -25,10 +25,9 @@ public class Product {
         return price.subtract(discount);
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(BigDecimal price) throws IllegalArgumentException {
         if (price.compareTo(BigDecimal.ZERO) < 0){
-            this.price = BigDecimal.ZERO;
-            return;
+            throw new IllegalArgumentException();
         }
         this.price = price;
     }

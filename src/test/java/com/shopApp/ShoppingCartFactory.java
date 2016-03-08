@@ -11,7 +11,7 @@ public class ShoppingCartFactory {
 
     private static ShoppingCart shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, NoSale.NoSale);;
 
-    public ShoppingCart getFilledShoppingCart() {
+    public static ShoppingCart getFilledShoppingCart() {
         return shoppingCart;
     }
 
