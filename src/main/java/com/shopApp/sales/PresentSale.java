@@ -6,11 +6,11 @@ import com.shopApp.ShoppingCart;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class SalePresent extends SaleAbstract {
+public class PresentSale extends AbstractSale {
 
     private Product present;
 
-    public SalePresent(List<Product> saleProducts, Product present) {
+    public PresentSale(List<Product> saleProducts, Product present) {
         super(saleProducts);
         this.present = present;
     }
@@ -19,7 +19,6 @@ public class SalePresent extends SaleAbstract {
         product.setPrice(BigDecimal.ZERO);
         return product;
     }
-
 
     @Override
     protected void makeSalePresent(Product product) {

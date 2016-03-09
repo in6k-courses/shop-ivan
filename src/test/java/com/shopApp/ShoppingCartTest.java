@@ -7,7 +7,7 @@ import com.shopApp.discounts.NoDiscount;
 import com.shopApp.discounts.TotalCostBasedDiscount;
 import com.shopApp.sales.NoSale;
 import com.shopApp.sales.Sale;
-import com.shopApp.sales.SaleDiscount;
+import com.shopApp.sales.DiscountSale;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,19 +41,15 @@ public class ShoppingCartTest {
     public void testSetDiscountPriceUsingCouponDiscount() {
         BigDecimal discountAmount = new BigDecimal(10);
         Discount discount = new CouponDiscount(discountAmount);
-        shoppingCart = new ShoppingCartImpl(discount, NoSale.NoSale);
-        shoppingCart.applyDiscount();
+        shoppingCart.applyDiscount(discount);
 
         assertThat(shoppingCart.getDiscountAmount(), is(discountAmount));
     }
 
     @Test
     public void testSetDiscountSizeWithTestCostBasedDiscount() {
-
         Discount discount = new TotalCostBasedDiscount();
-        shoppingCart = new ShoppingCartImpl(discount, NoSale.NoSale);
-        shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
-        shoppingCart.applyDiscount();
+        shoppingCart.applyDiscount(discount);
 
         BigDecimal discountAmount = new BigDecimal("123.9");
 
@@ -61,13 +57,20 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void testFinalCostWithSaleDiscount() {
-        Sale sale = new SaleDiscount(ShoppingCartFactory.getSaleProducts());
-        shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, sale);
-        shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
-        shoppingCart.applySale();
+    public void testFinalCostWithCouponDiscount() {
+        BigDecimal discountAmount = new BigDecimal(10);
+        Discount discount = new CouponDiscount(discountAmount);
+        shoppingCart.applyDiscount(discount);
 
-        assertThat(shoppingCart.getFinalCost(), is(new BigDecimal(1095)));
+        assertThat(shoppingCart.getDiscountAmount(), is(discountAmount));
+    }
+
+    @Test
+    public void testFinalCostWithSaleDiscount() {
+        Sale sale = new DiscountSale(ShoppingCartFactory.getSaleProducts());
+        shoppingCart.applySale(sale);
+
+        assertThat(shoppingCart.getFinalCost(), is(new BigDecimal(1635)));
     }
 
 }

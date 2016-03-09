@@ -1,5 +1,8 @@
 package com.shopApp;
 
+import com.shopApp.discounts.Discount;
+import com.shopApp.sales.Sale;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -11,9 +14,9 @@ public interface ShoppingCart {
 
     List<Product> getSelectedProducts();
 
-    void applyDiscount();
+    void applyDiscount(Discount discount);
 
-    void applySale();
+    void applySale(Sale sale);
 
     BigDecimal getOriginalCost();
 

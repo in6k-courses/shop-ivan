@@ -13,7 +13,6 @@ import java.util.List;
 public class SaleTest {
     protected Sale sale;
     protected ShoppingCart shoppingCart;
-    protected List<Product> selectedProducts = new ArrayList<Product>();
     protected List<Product> saleProducts = new ArrayList<Product>();
 
     protected List<Product> getSaleProducts() {

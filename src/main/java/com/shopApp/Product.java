@@ -26,21 +26,21 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) throws IllegalArgumentException {
-        if (price.compareTo(BigDecimal.ZERO) < 0){
+        if (price.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException();
         }
         this.price = price;
     }
 
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
     public boolean hasDiscount() {
-        if(discount.compareTo(BigDecimal.ZERO) > 0) {
+        if (discount.compareTo(BigDecimal.ZERO) > 0) {
             return true;
         }
         return false;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
     }
 
     public void setDiscount(BigDecimal discount) {
@@ -65,5 +65,5 @@ public class Product {
         result = 31 * result + price.hashCode();
         return result;
     }
-    
+
 }

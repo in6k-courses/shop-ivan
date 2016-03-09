@@ -26,8 +26,7 @@ public class ConsolePrinterTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     private void setPrinterObject() {
-        ShoppingCartFactory shoppingCartFactory = new ShoppingCartFactory();
-        shoppingCart = shoppingCartFactory.getFilledShoppingCart();
+        shoppingCart = ShoppingCartFactory.getFilledShoppingCart();
         printer = new ConsolePrinter(shoppingCart);
     }
 
@@ -50,10 +49,10 @@ public class ConsolePrinterTest {
     @Test
     public void testPrintCartProducts() {
         printer.print();
-        assertThat(outContent.toString(), is(getCheck()));
+        assertThat(outContent.toString(), is(getShoppingCheck()));
     }
 
-    private String getCheck() {
+    private String getShoppingCheck() {
         String check = ""
                 + "Check" + "\n"
                 + getDivisionLine() + "\n"
@@ -64,6 +63,15 @@ public class ConsolePrinterTest {
                 + getPricesList();
 
         return check;
+    }
+
+    private String getDivisionLine() {
+        String divisionSign = "=";
+        String divisionLine = "";
+        for (int i = 0; i < DIVIDER_LENGTH; i++) {
+            divisionLine += divisionSign;
+        }
+        return divisionLine;
     }
 
     private String getProductList() {
@@ -85,15 +93,6 @@ public class ConsolePrinterTest {
 
     private String wrapper(String line) {
         return String.format(NAME_FORMAT, line);
-    }
-
-    public String getDivisionLine() {
-        String divisionSign = "=";
-        String divisionLine = "";
-        for (int i = 0; i < DIVIDER_LENGTH; i++) {
-            divisionLine += divisionSign;
-        }
-        return divisionLine;
     }
 
 }

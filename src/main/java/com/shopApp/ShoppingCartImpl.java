@@ -1,7 +1,6 @@
 package com.shopApp;
 
 import com.shopApp.discounts.Discount;
-import com.shopApp.discounts.NoDiscount;
 import com.shopApp.sales.Sale;
 
 import java.math.BigDecimal;
@@ -14,7 +13,7 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     private List<Product> selectedProducts;
 
-    private BigDecimal originalPrice = BigDecimal.ZERO;
+    private BigDecimal originalCost = BigDecimal.ZERO;
     private BigDecimal discountAmount = BigDecimal.ZERO;
 
 
@@ -25,22 +24,33 @@ public class ShoppingCartImpl implements ShoppingCart {
         calculateCost();
     }
 
-    public void applyDiscount() {
-        discountAmount = discount.calculateDiscount(originalPrice);
+    public void applyDiscount(Discount discount) {
+        setDiscount(discount);
+        discountAmount = discount.calculateDiscount(originalCost);
         calculateCost();
     }
 
-    public void applySale() {
+    public void applySale(Sale sale) {
+        setSale(sale);
         sale.applySaleFor(this);
         calculateCost();
     }
 
-    public void setDiscount(Discount discount) {
+    private void calculateCost() {
+        originalCost = updateOriginalCost();
+        discountAmount = discount.calculateDiscount(originalCost);
+    }
+
+    private void setDiscount(Discount discount) {
         this.discount = discount;
     }
 
+    private void setSale(Sale sale) {
+        this.sale = sale;
+    }
+
     public BigDecimal getOriginalCost() {
-        return originalPrice;
+        return originalCost;
     }
 
     public BigDecimal getDiscountAmount() {
@@ -52,11 +62,7 @@ public class ShoppingCartImpl implements ShoppingCart {
     }
 
     public BigDecimal getFinalCost() {
-        return originalPrice.subtract(discountAmount);
-    }
-
-    public Discount getDiscount() {
-        return discount;
+        return originalCost.subtract(discountAmount);
     }
 
     public void addProduct(Product product) {
@@ -67,16 +73,6 @@ public class ShoppingCartImpl implements ShoppingCart {
     public void addProducts(List<Product> products) {
         selectedProducts.addAll(products);
         calculateCost();
-    }
-
-    private void calculateCost() {
-        originalPrice = updateOriginalCost();
-        if (!isDiscount())
-            discountAmount = discount.calculateDiscount(originalPrice);
-    }
-
-    private boolean isDiscount() {
-        return discount.equals(NoDiscount.NoDiscount);
     }
 
     private BigDecimal updateOriginalCost() {

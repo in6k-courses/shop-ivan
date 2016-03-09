@@ -3,7 +3,6 @@ package com.shopApp.printers;
 import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
 
-
 import java.io.PrintStream;
 import java.util.List;
 
@@ -21,13 +20,13 @@ public abstract class Printer {
         this.printStream = printStream;
     }
 
-    protected abstract String wrapper(String line) ;
+    protected abstract String wrapper(String line);
 
     public void printHeader() {
         printStream.println("Check");
     }
 
-    abstract void printDivideLine() ;
+    abstract void printDivideLine();
 
     public void print() {
         printHeader();
@@ -35,12 +34,12 @@ public abstract class Printer {
         printCartProducts(shoppingCart.getSelectedProducts());
         printDivideLine();
         printFooter();
-    };
+    }
 
     private void printCartProducts(List<Product> products) {
         printStream.println(wrapper("Shopping Cart has:"));
         printDivideLine();
-        for(Product product : products) {
+        for (Product product : products) {
             printStream.print(wrapper(product.getTitle()));
             printStream.print(wrapper(product.getPrice().toString()) + "\n");
         }
@@ -69,7 +68,6 @@ public abstract class Printer {
         String value = wrapper(shoppingCart.getFinalCost().toString());
         return title + value;
     }
-
 
 
 }

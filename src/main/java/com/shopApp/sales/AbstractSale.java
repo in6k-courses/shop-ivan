@@ -9,22 +9,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by ivan on 08.03.16.
- */
-public abstract class SaleAbstract implements Sale {
+public abstract class AbstractSale implements Sale {
 
     protected ShoppingCart shoppingCart;
     protected List<Product> saleProducts = Collections.EMPTY_LIST;
 
-    public SaleAbstract(List<Product> saleProducts) {
+    public AbstractSale(List<Product> saleProducts) {
         this.saleProducts = saleProducts;
     }
 
-    @Override
     public void applySaleFor(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
-        List<Product> shoppingCartProducts = new ArrayList<>(shoppingCart.getSelectedProducts());
+        List<Product> shoppingCartProducts = new ArrayList<Product>(shoppingCart.getSelectedProducts());
         for (Product product : shoppingCartProducts) {
             if (isSaleProduct(product)) {
                 makeSalePresent(product);
@@ -32,7 +28,7 @@ public abstract class SaleAbstract implements Sale {
         }
     }
 
-    public Boolean isSaleProduct(Product product) {
+    private Boolean isSaleProduct(Product product) {
         return saleProducts.contains(product);
     }
 

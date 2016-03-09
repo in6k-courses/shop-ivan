@@ -4,9 +4,7 @@ import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
 import com.shopApp.ShoppingCartFactory;
 import com.shopApp.ShoppingCartImpl;
-import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.NoDiscount;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -25,10 +23,10 @@ public class SalePresentTest extends SaleTest {
 
     @Test
     public void testTakeParticipationInSale() {
-        sale = new SalePresent(saleProducts, createPresent());
+        sale = new PresentSale(saleProducts, createPresent());
         ShoppingCart shoppingCart = new ShoppingCartImpl(NoDiscount.NoDiscount, sale);
         shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
-        shoppingCart.applySale();
+        shoppingCart.applySale(sale);
 
         assertThat(shoppingCart.getSelectedProducts(), hasItems(present));
     }

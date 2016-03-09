@@ -35,7 +35,7 @@ public class TotalCostBasedDiscount implements Discount {
 
     private boolean isWithoutDiscount(BigDecimal amount) {
         BigDecimal minMoneyAmount = new BigDecimal(ZERO_DISCOUNT_PERCENT);
-        if(amount.compareTo(minMoneyAmount) < 0) {
+        if (amount.compareTo(minMoneyAmount) < 0) {
             return true;
         }
         return false;
@@ -43,7 +43,7 @@ public class TotalCostBasedDiscount implements Discount {
 
     private boolean is(BigDecimal cost, int border) {
         BigDecimal smallMoney = new BigDecimal(border);
-        if(cost.compareTo(smallMoney) <= 0) {
+        if (cost.compareTo(smallMoney) <= 0) {
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ public class TotalCostBasedDiscount implements Discount {
 
     private boolean isSmallMoney(BigDecimal amount) {
         BigDecimal smallMoney = new BigDecimal(SMALL_MONEY_AMOUNT_BORDER);
-        if(amount.compareTo(smallMoney) <= 0) {
+        if (amount.compareTo(smallMoney) <= 0) {
             return true;
         }
         return false;
@@ -60,7 +60,7 @@ public class TotalCostBasedDiscount implements Discount {
 
     private boolean isMiddleMoney(BigDecimal amount) {
         BigDecimal middleMoney = new BigDecimal(MIDDLE_MONEY_AMOUNT_BORDER);
-        if(amount.compareTo(middleMoney) <= 0) {
+        if (amount.compareTo(middleMoney) <= 0) {
             return true;
         }
         return false;

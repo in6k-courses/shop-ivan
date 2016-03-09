@@ -44,24 +44,24 @@ public class TotalCostBasedDiscountTest {
     @Test
     public void testMiddleDiscountCalculation() {
         BigDecimal middlePercent = new BigDecimal(5);
-        BigDecimal price = new BigDecimal(500);
-        BigDecimal discountSize = testDiscount(middlePercent, price);
+        BigDecimal cost = new BigDecimal(500);
+        BigDecimal discountSize = testDiscount(middlePercent, cost);
 
-        assertThat(variableDiscount.calculateDiscount(price), is(discountSize));
+        assertThat(variableDiscount.calculateDiscount(cost), is(discountSize));
     }
 
     @Test
     public void testBigDiscountCalculation() {
         BigDecimal middlePercent = new BigDecimal(7);
-        BigDecimal price = new BigDecimal(1000);
-        BigDecimal discountSize = testDiscount(middlePercent, price);
+        BigDecimal cost = new BigDecimal(1000);
+        BigDecimal discountSize = testDiscount(middlePercent, cost);
 
-        assertThat(variableDiscount.calculateDiscount(price), is(discountSize));
+        assertThat(variableDiscount.calculateDiscount(cost), is(discountSize));
     }
 
-    private BigDecimal testDiscount(BigDecimal percent, BigDecimal price) {
+    private BigDecimal testDiscount(BigDecimal percent, BigDecimal cost) {
         BigDecimal oneHundred = new BigDecimal(ONE_HUNDRED_PERCENT);
-        BigDecimal discountSize = (price.multiply(percent)).divide(oneHundred);
+        BigDecimal discountSize = (cost.multiply(percent)).divide(oneHundred);
         return discountSize;
     }
 
