@@ -26,10 +26,10 @@ public class TotalCostBasedDiscount implements Discount {
         return discount;
     }
 
-    private int getDiscountPercent(BigDecimal price) {
-        if (isWithoutDiscount(price)) return ZERO_DISCOUNT_PERCENT;
-        if (isSmallMoney(price)) return SMALL_DISCOUNT_PERCENT;
-        if (isMiddleMoney(price)) return MIDDLE_DISCOUNT_PERCENT;
+    private int getDiscountPercent(BigDecimal cost) {
+        if (isWithoutDiscount(cost)) return ZERO_DISCOUNT_PERCENT;
+        if (isSmallMoney(cost)) return SMALL_DISCOUNT_PERCENT;
+        if (isMiddleMoney(cost)) return MIDDLE_DISCOUNT_PERCENT;
         return BIG_DISCOUNT_PERCENT;
     }
 
@@ -41,10 +41,13 @@ public class TotalCostBasedDiscount implements Discount {
         return false;
     }
 
-//    private boolean is() {
-//        BigDecimal moneyGroup = new BigDecimal(money);
-//        return false;
-//    }
+    private boolean is(BigDecimal cost, int border) {
+        BigDecimal smallMoney = new BigDecimal(border);
+        if(cost.compareTo(smallMoney) <= 0) {
+            return true;
+        }
+        return false;
+    }
 
 
     private boolean isSmallMoney(BigDecimal amount) {

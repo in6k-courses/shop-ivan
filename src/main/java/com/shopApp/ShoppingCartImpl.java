@@ -71,12 +71,12 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     private void calculateCost() {
         originalPrice = updateOriginalCost();
-        if (!discount.equals(NoDiscount.NoDiscount))
+        if (!isDiscount())
             discountAmount = discount.calculateDiscount(originalPrice);
     }
 
     private boolean isDiscount() {
-        return !(discount == null);
+        return discount.equals(NoDiscount.NoDiscount);
     }
 
     private BigDecimal updateOriginalCost() {

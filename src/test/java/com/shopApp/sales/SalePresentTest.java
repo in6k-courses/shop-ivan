@@ -6,6 +6,7 @@ import com.shopApp.ShoppingCartFactory;
 import com.shopApp.ShoppingCartImpl;
 import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.NoDiscount;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -16,7 +17,6 @@ import static org.hamcrest.core.IsCollectionContaining.hasItems;
 public class SalePresentTest extends SaleTest {
 
     private Product present;
-
 
     public Product createPresent() {
         present = new Product("football poster", new BigDecimal(0));

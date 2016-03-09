@@ -40,7 +40,7 @@ public class ShoppingCartTest {
     @Test
     public void testSetDiscountPriceUsingCouponDiscount() {
         BigDecimal discountAmount = new BigDecimal(10);
-        Discount discount = new CouponDiscount(10);
+        Discount discount = new CouponDiscount(discountAmount);
         shoppingCart = new ShoppingCartImpl(discount, NoSale.NoSale);
         shoppingCart.applyDiscount();
 
@@ -48,7 +48,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void testSetDiscountSizeWithVariableDiscount() {
+    public void testSetDiscountSizeWithTestCostBasedDiscount() {
 
         Discount discount = new TotalCostBasedDiscount();
         shoppingCart = new ShoppingCartImpl(discount, NoSale.NoSale);

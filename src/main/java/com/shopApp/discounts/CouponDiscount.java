@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 
 public class CouponDiscount implements Discount {
 
-    private static int discountAmount;
+    private static BigDecimal discountAmount;
 
-    public CouponDiscount(int discountAmount) {
+    public CouponDiscount(BigDecimal discountAmount) {
         this.discountAmount = discountAmount;
     }
 
     public BigDecimal calculateDiscount(BigDecimal price) {
-        return new BigDecimal(discountAmount);
+        return discountAmount;
     }
 }

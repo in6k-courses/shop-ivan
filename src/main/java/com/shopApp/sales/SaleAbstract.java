@@ -6,6 +6,7 @@ import com.shopApp.discounts.Discount;
 import com.shopApp.discounts.ProductDiscount;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,8 +14,8 @@ import java.util.List;
  */
 public abstract class SaleAbstract implements Sale {
 
-    protected List<Product> saleProducts = new ArrayList<Product>();
-    protected Discount productDiscount = new ProductDiscount();
+    protected ShoppingCart shoppingCart;
+    protected List<Product> saleProducts = Collections.EMPTY_LIST;
 
     public SaleAbstract(List<Product> saleProducts) {
         this.saleProducts = saleProducts;
@@ -22,15 +23,16 @@ public abstract class SaleAbstract implements Sale {
 
     @Override
     public void applySaleFor(ShoppingCart shoppingCart) {
-        for (Product product : shoppingCart.getSelectedProducts()) {
+        this.shoppingCart = shoppingCart;
+        List<Product> shoppingCartProducts = new ArrayList<>(shoppingCart.getSelectedProducts());
+        for (Product product : shoppingCartProducts) {
             if (isSaleProduct(product)) {
                 makeSalePresent(product);
-                return;
             }
         }
     }
 
-    private Boolean isSaleProduct(Product product) {
+    public Boolean isSaleProduct(Product product) {
         return saleProducts.contains(product);
     }
 

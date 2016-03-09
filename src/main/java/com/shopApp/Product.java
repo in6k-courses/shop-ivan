@@ -36,6 +36,13 @@ public class Product {
         return discount;
     }
 
+    public boolean hasDiscount() {
+        if(discount.compareTo(BigDecimal.ZERO) > 0) {
+            return true;
+        }
+        return false;
+    }
+
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }

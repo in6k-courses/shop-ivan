@@ -12,14 +12,14 @@ public class CouponDiscountTest {
     private static final int DISCOUNT_VALUE = 10;
 
     @Test
-    public void testFixedDiscountCalculation() {
-        Discount fixedDiscount = new CouponDiscount(DISCOUNT_VALUE);
+    public void testCouponDiscountCalculation() {
         BigDecimal discount = new BigDecimal(DISCOUNT_VALUE);
+        Discount couponDiscount = new CouponDiscount(discount);
 
         BigDecimal[] moneyValues = {new BigDecimal(100), new BigDecimal(500), new BigDecimal(1000)};
 
         for (int i = 0; i < moneyValues.length; i++) {
-            assertThat(fixedDiscount.calculateDiscount(moneyValues[i]), is(discount));
+            assertThat(couponDiscount.calculateDiscount(moneyValues[i]), is(discount));
         }
     }
 }

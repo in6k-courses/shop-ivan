@@ -47,8 +47,6 @@ public class ConsolePrinterTest {
     }
 
 
-
-
     @Test
     public void testPrintCartProducts() {
         printer.print();

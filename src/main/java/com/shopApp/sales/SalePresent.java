@@ -4,7 +4,6 @@ import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SalePresent extends SaleAbstract {
@@ -13,7 +12,7 @@ public class SalePresent extends SaleAbstract {
 
     public SalePresent(List<Product> saleProducts, Product present) {
         super(saleProducts);
-        this.present = makePresent(present);
+        this.present = present;
     }
 
     private Product makePresent(Product product) {
@@ -21,8 +20,13 @@ public class SalePresent extends SaleAbstract {
         return product;
     }
 
+
     @Override
     protected void makeSalePresent(Product product) {
+        giveGift(shoppingCart);
+    }
 
+    protected void giveGift(ShoppingCart shoppingCart) {
+        shoppingCart.addProduct(makePresent(present));
     }
 }

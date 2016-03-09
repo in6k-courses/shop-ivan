@@ -1,7 +1,6 @@
 package com.shopApp.sales;
 
 import com.shopApp.Product;
-import com.shopApp.ShoppingCart;
 import com.shopApp.ShoppingCartFactory;
 import com.shopApp.ShoppingCartImpl;
 import com.shopApp.discounts.NoDiscount;
@@ -9,6 +8,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,18 +24,19 @@ public class SaleDiscountTest extends SaleTest {
         shoppingCart.addProducts(ShoppingCartFactory.getProductsSet());
         shoppingCart.applySale();
 
-
         List<Product> cartProducts = shoppingCart.getSelectedProducts();
-        Product specialProduct = findProductByName("Goalkeeper's gloves", cartProducts);
-
-        assertThat(specialProduct.getPriceWithDiscount(), is(new BigDecimal(150)));
+        List<Product> productsWithDiscount = getProductsWithDiscount(cartProducts);
+        for (Product product : productsWithDiscount) {
+            assertThat(product.getPriceWithDiscount(), is(new BigDecimal(150)));
+        }
     }
 
-    private Product findProductByName(String title, List<Product> products) {
+    private List<Product> getProductsWithDiscount(List<Product> products) {
+        List<Product> productsWithDiscount = new ArrayList<>();
         for (Product product : products) {
-            if (product.getTitle() == title) return product;
+            if (product.hasDiscount()) productsWithDiscount.add(product);
         }
-        return null;
+        return productsWithDiscount;
     }
 
 }
