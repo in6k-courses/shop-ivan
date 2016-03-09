@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class CouponDiscount implements Discount {
 
-    private static BigDecimal discountAmount;
+    private BigDecimal discountAmount;
 
     public CouponDiscount(BigDecimal discountAmount) {
         this.discountAmount = discountAmount;

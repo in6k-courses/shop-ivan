@@ -20,11 +20,7 @@ public abstract class Printer {
         this.printStream = printStream;
     }
 
-    protected abstract String wrapper(String line);
-
-    public void printHeader() {
-        printStream.println("Check");
-    }
+    abstract String wrapper(String line);
 
     abstract void printDivideLine();
 
@@ -34,6 +30,10 @@ public abstract class Printer {
         printCartProducts(shoppingCart.getSelectedProducts());
         printDivideLine();
         printFooter();
+    }
+
+    public void printHeader() {
+        printStream.println("Check");
     }
 
     private void printCartProducts(List<Product> products) {
@@ -68,6 +68,4 @@ public abstract class Printer {
         String value = wrapper(shoppingCart.getFinalCost().toString());
         return title + value;
     }
-
-
 }

@@ -16,8 +16,9 @@ public class PresentSale extends AbstractSale {
     }
 
     private Product makePresent(Product product) {
-        product.setPrice(BigDecimal.ZERO);
-        return product;
+        Product present = product;
+        present.setPrice(BigDecimal.ZERO);
+        return present;
     }
 
     @Override
@@ -25,7 +26,7 @@ public class PresentSale extends AbstractSale {
         giveGift(shoppingCart);
     }
 
-    protected void giveGift(ShoppingCart shoppingCart) {
+    private void giveGift(ShoppingCart shoppingCart) {
         shoppingCart.addProduct(makePresent(present));
     }
 }

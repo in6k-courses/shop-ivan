@@ -1,15 +1,19 @@
 package com.shopApp.discounts;
 
+
 import java.math.BigDecimal;
 
 public class ProductDiscount implements Discount {
 
-    private static final int DISCOUNT_PERCENT = 10;
+    private BigDecimal discountPercent;
+
+    public ProductDiscount(int percent) {
+        this.discountPercent = new BigDecimal(percent);
+    }
 
     public BigDecimal calculateDiscount(BigDecimal price) {
-        BigDecimal percent = new BigDecimal(DISCOUNT_PERCENT);
-        BigDecimal oneHundredPercent = new BigDecimal(ONE_HUNDRED_PERCENT);
-        BigDecimal discount = (price.multiply(percent)).divide(oneHundredPercent);
+        BigDecimal oneHundredPercent = new BigDecimal(HUNDRED_PERCENT);
+        BigDecimal discount = (price.multiply(discountPercent)).divide(oneHundredPercent);
         return discount;
     }
 }

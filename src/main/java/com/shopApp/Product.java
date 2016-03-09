@@ -2,7 +2,7 @@ package com.shopApp;
 
 import java.math.BigDecimal;
 
-public class Product {
+public class Product implements Cloneable {
     private String title;
     private BigDecimal price;
     private BigDecimal discount;
@@ -64,6 +64,11 @@ public class Product {
         int result = title.hashCode();
         result = 31 * result + price.hashCode();
         return result;
+    }
+
+    @Override
+    public Product clone() throws CloneNotSupportedException {
+        return (Product) super.clone();
     }
 
 }

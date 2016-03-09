@@ -67,7 +67,8 @@ public class ShoppingCartTest {
 
     @Test
     public void testFinalCostWithSaleDiscount() {
-        Sale sale = new DiscountSale(ShoppingCartFactory.getSaleProducts());
+        int discountPercent = 10;
+        Sale sale = new DiscountSale(ShoppingCartFactory.getSaleProducts(), discountPercent);
         shoppingCart.applySale(sale);
 
         assertThat(shoppingCart.getFinalCost(), is(new BigDecimal(1635)));

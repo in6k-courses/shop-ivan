@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  */
 public interface Discount {
 
-    int ONE_HUNDRED_PERCENT = 100;
+    int HUNDRED_PERCENT = 100;
 
     BigDecimal calculateDiscount(BigDecimal price);
 }

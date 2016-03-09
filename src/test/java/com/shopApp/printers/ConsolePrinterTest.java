@@ -1,10 +1,8 @@
-package com.shopApp.print;
+package com.shopApp.printers;
 
 import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
 import com.shopApp.ShoppingCartFactory;
-import com.shopApp.printers.ConsolePrinter;
-import com.shopApp.printers.Printer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +24,7 @@ public class ConsolePrinterTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     private void setPrinterObject() {
-        shoppingCart = ShoppingCartFactory.getFilledShoppingCart();
+        shoppingCart = ShoppingCartFactory.getShoppingCartWithThreeProducts();
         printer = new ConsolePrinter(shoppingCart);
     }
 

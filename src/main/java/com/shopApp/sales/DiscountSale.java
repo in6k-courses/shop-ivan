@@ -9,10 +9,11 @@ import java.util.List;
 
 public class DiscountSale extends AbstractSale {
 
-    private Discount productDiscount = new ProductDiscount();
+    private Discount productDiscount;
 
-    public DiscountSale(List<Product> saleProducts) {
+    public DiscountSale(List<Product> saleProducts, int discountPercent) {
         super(saleProducts);
+        productDiscount = new ProductDiscount(discountPercent);
     }
 
     @Override

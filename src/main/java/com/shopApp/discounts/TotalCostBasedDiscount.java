@@ -21,48 +21,25 @@ public class TotalCostBasedDiscount implements Discount {
     public BigDecimal calculateDiscount(BigDecimal cost) {
         discountPercent = getDiscountPercent(cost);
         BigDecimal percent = new BigDecimal(discountPercent);
-        BigDecimal oneHundredPercent = new BigDecimal(ONE_HUNDRED_PERCENT);
+        BigDecimal oneHundredPercent = new BigDecimal(HUNDRED_PERCENT);
         BigDecimal discount = (cost.multiply(percent)).divide(oneHundredPercent);
         return discount;
     }
 
     private int getDiscountPercent(BigDecimal cost) {
-        if (isWithoutDiscount(cost)) return ZERO_DISCOUNT_PERCENT;
-        if (isSmallMoney(cost)) return SMALL_DISCOUNT_PERCENT;
-        if (isMiddleMoney(cost)) return MIDDLE_DISCOUNT_PERCENT;
+        if (lessThanBorder(cost, 0)) return ZERO_DISCOUNT_PERCENT;
+        if (lessThanBorder(cost, SMALL_MONEY_AMOUNT_BORDER)) return SMALL_DISCOUNT_PERCENT;
+        if (lessThanBorder(cost, MIDDLE_MONEY_AMOUNT_BORDER)) return MIDDLE_DISCOUNT_PERCENT;
         return BIG_DISCOUNT_PERCENT;
     }
 
-    private boolean isWithoutDiscount(BigDecimal amount) {
-        BigDecimal minMoneyAmount = new BigDecimal(ZERO_DISCOUNT_PERCENT);
-        if (amount.compareTo(minMoneyAmount) < 0) {
+
+    private boolean lessThanBorder(BigDecimal cost, int border) {
+        BigDecimal borderOfMoney = new BigDecimal(border);
+        if (cost.compareTo(borderOfMoney) <= 0) {
             return true;
         }
         return false;
     }
 
-    private boolean is(BigDecimal cost, int border) {
-        BigDecimal smallMoney = new BigDecimal(border);
-        if (cost.compareTo(smallMoney) <= 0) {
-            return true;
-        }
-        return false;
-    }
-
-
-    private boolean isSmallMoney(BigDecimal amount) {
-        BigDecimal smallMoney = new BigDecimal(SMALL_MONEY_AMOUNT_BORDER);
-        if (amount.compareTo(smallMoney) <= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isMiddleMoney(BigDecimal amount) {
-        BigDecimal middleMoney = new BigDecimal(MIDDLE_MONEY_AMOUNT_BORDER);
-        if (amount.compareTo(middleMoney) <= 0) {
-            return true;
-        }
-        return false;
-    }
 }

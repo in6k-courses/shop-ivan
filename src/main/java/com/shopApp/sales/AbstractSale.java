@@ -2,8 +2,6 @@ package com.shopApp.sales;
 
 import com.shopApp.Product;
 import com.shopApp.ShoppingCart;
-import com.shopApp.discounts.Discount;
-import com.shopApp.discounts.ProductDiscount;
 
 import java.util.ArrayList;
 import java.util.Collections;

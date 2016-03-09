@@ -37,7 +37,7 @@ public class ShoppingCartImpl implements ShoppingCart {
     }
 
     private void calculateCost() {
-        originalCost = updateOriginalCost();
+        originalCost = calculateOriginalCost();
         discountAmount = discount.calculateDiscount(originalCost);
     }
 
@@ -47,6 +47,10 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     private void setSale(Sale sale) {
         this.sale = sale;
+    }
+
+    public BigDecimal getFinalCost() {
+        return originalCost.subtract(discountAmount);
     }
 
     public BigDecimal getOriginalCost() {
@@ -61,10 +65,6 @@ public class ShoppingCartImpl implements ShoppingCart {
         return selectedProducts;
     }
 
-    public BigDecimal getFinalCost() {
-        return originalCost.subtract(discountAmount);
-    }
-
     public void addProduct(Product product) {
         selectedProducts.add(product);
         calculateCost();
@@ -75,9 +75,8 @@ public class ShoppingCartImpl implements ShoppingCart {
         calculateCost();
     }
 
-    private BigDecimal updateOriginalCost() {
+    private BigDecimal calculateOriginalCost() {
         BigDecimal sum = BigDecimal.ZERO;
-
         for(Product product : selectedProducts) {
             sum = sum.add(product.getPriceWithDiscount());
         }
